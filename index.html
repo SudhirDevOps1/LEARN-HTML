@@ -1,0 +1,2890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Complete Tutorial • Sudhir Kumar</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Prism (code block syntax highlighting) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+  <!-- CodeMirror (VS Code-like editor) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --vh: 1vh;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    html, body { height: 100%; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    code, pre, textarea { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    .glass { background: rgba(2, 6, 23, 0.62); backdrop-filter: blur(10px); }
+    .ring-soft { box-shadow: 0 0 0 1px rgba(148, 163, 184, .18) inset; }
+
+    .scrollbar-thin::-webkit-scrollbar { width: 10px; height: 10px; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(148,163,184,.28); border-radius: 999px; border: 2px solid rgba(2,6,23,.75); }
+    .scrollbar-thin::-webkit-scrollbar-track { background: rgba(2,6,23,.65); }
+
+    .prose-lite p { margin: .65rem 0; color: rgb(226 232 240); line-height: 1.7; }
+    .prose-lite li { margin: .25rem 0; }
+    .prose-lite h2 { font-weight: 700; margin-top: 1.25rem; }
+    .prose-lite h3 { font-weight: 700; margin-top: 1rem; }
+
+    .kbd { font: 600 12px/1.1 Inter, system-ui; padding: .15rem .4rem; border-radius: .45rem; background: rgba(148,163,184,.15); border: 1px solid rgba(148,163,184,.25); color: rgb(226,232,240); }
+
+    .shimmer { position: relative; overflow: hidden; }
+    .shimmer:after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.06) 40%, transparent 80%); transform: translateX(-100%); animation: shimmer 1.3s infinite; }
+    @keyframes shimmer { 100% { transform: translateX(100%);} }
+
+    /* Code blocks */
+    pre[class*="language-"] {
+      margin: 0;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, .18);
+      background: rgba(0,0,0,.45) !important;
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, .12) inset;
+      overflow: auto;
+    }
+
+    /* CodeMirror (VS Code-ish) */
+    .CodeMirror {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      height: 380px;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, .18);
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, .12) inset;
+      overflow: hidden;
+    }
+    .CodeMirror-scroll { padding: 10px; }
+    .CodeMirror-gutters { background: rgba(2,6,23,.45) !important; border-right: 1px solid rgba(148, 163, 184, .12) !important; }
+    .CodeMirror-linenumber { color: rgba(148, 163, 184, .75) !important; }
+    .CodeMirror-selected { background: rgba(56,189,248,.22) !important; }
+    .CodeMirror-activeline-background { background: rgba(148,163,184,.08) !important; }
+
+    @media (min-width: 1024px) {
+      .CodeMirror { height: 520px; }
+    }
+
+    /* Toast should not hide behind bottom nav */
+    #toast { bottom: calc(1rem + var(--safe-bottom) + 68px); }
+    @media (min-width: 768px) {
+      #toast { bottom: 1rem; }
+    }
+
+    .safe-bottom-pad { padding-bottom: calc(0.75rem + var(--safe-bottom)); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100">
+
+  <!-- Seed data from your JSON (as provided) -->
+  <script id="seedData" type="application/json">
+{
+  "app": {
+    "name": "HTML Complete Tutorial",
+    "author": "Sudhir Kumar",
+    "username": "SudhirDevOps1",
+    "github": "https://github.com/SudhirDevOps1",
+    "version": "2.0",
+    "logo_icon": "fab fa-html5"
+  },
+  "languages": [
+    {"code": "hi", "name": "हिंदी", "flag": "🇮🇳", "greeting": "नमस्ते"},
+    {"code": "en", "name": "English", "flag": "🇬🇧", "greeting": "Hello"},
+    {"code": "ta", "name": "தமிழ்", "flag": "🇮🇳", "greeting": "வணக்கம்"},
+    {"code": "te", "name": "తెలుగు", "flag": "🇮🇳", "greeting": "నమస్కారం"},
+    {"code": "bn", "name": "বাংলা", "flag": "🇮🇳", "greeting": "নমস্কার"},
+    {"code": "mr", "name": "मराठी", "flag": "🇮🇳", "greeting": "नमस्कार"},
+    {"code": "gu", "name": "ગુજરાતી", "flag": "🇮🇳", "greeting": "નમસ્તે"},
+    {"code": "kn", "name": "ಕನ್ನಡ", "flag": "🇮🇳", "greeting": "ನಮಸ್ಕಾರ"},
+    {"code": "ml", "name": "മലയാളം", "flag": "🇮🇳", "greeting": "നമസ്കാരം"},
+    {"code": "pa", "name": "ਪੰਜਾਬੀ", "flag": "🇮🇳", "greeting": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ"},
+    {"code": "or", "name": "ଓଡ଼ିଆ", "flag": "🇮🇳", "greeting": "ନମସ୍କାର"}
+  ],
+  "topics": [
+    {
+      "id": "intro",
+      "icon": "fas fa-home",
+      "color": "yellow",
+      "title": {
+        "hi": "🏠 Introduction",
+        "en": "🏠 Introduction"
+      },
+      "isAccordion": false
+    },
+    {
+      "id": "html-basics",
+      "icon": "fas fa-rocket",
+      "color": "pink",
+      "title": {
+        "hi": "1. HTML Basics",
+        "en": "1. HTML Basics"
+      },
+      "isAccordion": true,
+      "subtopics": [
+        {"id": "what-is-html", "title": {"hi": "HTML क्या है", "en": "What is HTML"}},
+        {"id": "html-history", "title": {"hi": "HTML का इतिहास", "en": "History of HTML"}},
+        {"id": "html-versions", "title": {"hi": "HTML Versions", "en": "HTML Versions"}},
+        {"id": "html-comments", "title": {"hi": "HTML Comments", "en": "HTML Comments"}}
+      ]
+    },
+    {
+      "id": "doc-structure",
+      "icon": "fas fa-sitemap",
+      "color": "orange",
+      "title": {
+        "hi": "2. Document Structure",
+        "en": "2. Document Structure"
+      },
+      "isAccordion": true,
+      "subtopics": [
+        {"id": "doctype", "title": {"hi": "DOCTYPE", "en": "DOCTYPE"}},
+        {"id": "html-structure", "title": {"hi": "HTML Structure", "en": "HTML Structure"}},
+        {"id": "head-section", "title": {"hi": "Head Section", "en": "Head Section"}},
+        {"id": "body-section", "title": {"hi": "Body Section", "en": "Body Section"}}
+      ]
+    },
+    {
+      "id": "tags-elements",
+      "icon": "fas fa-tags",
+      "color": "green",
+      "title": {
+        "hi": "3. Tags & Elements",
+        "en": "3. Tags & Elements"
+      },
+      "isAccordion": true,
+      "subtopics": [
+        {"id": "paired-tags", "title": {"hi": "Paired Tags", "en": "Paired Tags"}},
+        {"id": "unpaired-tags", "title": {"hi": "Unpaired Tags", "en": "Unpaired Tags"}},
+        {"id": "block-inline", "title": {"hi": "Block vs Inline", "en": "Block vs Inline"}}
+      ]
+    },
+    {
+      "id": "text-formatting",
+      "icon": "fas fa-font",
+      "color": "yellow",
+      "title": {
+        "hi": "4. Text Formatting",
+        "en": "4. Text Formatting"
+      },
+      "isAccordion": true,
+      "subtopics": [
+        {"id": "headings", "title": {"hi": "Headings H1-H6", "en": "Headings H1-H6"}},
+        {"id": "paragraphs", "title": {"hi": "Paragraphs", "en": "Paragraphs"}},
+        {"id": "text-styles", "title": {"hi": "Text Styles", "en": "Text Styles"}}
+      ]
+    },
+    {
+      "id": "attributes",
+      "icon": "fas fa-cog",
+      "color": "cyan",
+      "title": {
+        "hi": "5. Attributes",
+        "en": "5. Attributes"
+      },
+      "isAccordion": true,
+      "subtopics": [
+        {"id": "common-attr", "title": {"hi": "Common Attributes", "en": "Common Attributes"}},
+        {"id": "global-attr", "title": {"hi": "Global Attributes", "en": "Global Attributes"}}
+      ]
+    },
+    {
+      "id": "links",
+      "icon": "fas fa-link",
+      "color": "blue",
+      "title": {"hi": "6. Links", "en": "6. Links"},
+      "isAccordion": false
+    },
+    {
+      "id": "images",
+      "icon": "fas fa-image",
+      "color": "purple",
+      "title": {"hi": "7. Images", "en": "7. Images"},
+      "isAccordion": false
+    },
+    {
+      "id": "lists",
+      "icon": "fas fa-list",
+      "color": "red",
+      "title": {"hi": "8. Lists", "en": "8. Lists"},
+      "isAccordion": false
+    },
+    {
+      "id": "tables",
+      "icon": "fas fa-table",
+      "color": "teal",
+      "title": {"hi": "9. Tables", "en": "9. Tables"},
+      "isAccordion": false
+    },
+    {
+      "id": "forms",
+      "icon": "fas fa-wpforms",
+      "color": "indigo",
+      "title": {"hi": "10. Forms", "en": "10. Forms"},
+      "isAccordion": false
+    },
+    {
+      "id": "multimedia",
+      "icon": "fas fa-video",
+      "color": "rose",
+      "title": {"hi": "11. Multimedia", "en": "11. Multimedia"},
+      "isAccordion": false
+    },
+    {
+      "id": "semantic",
+      "icon": "fas fa-code",
+      "color": "amber",
+      "title": {"hi": "12. Semantic HTML", "en": "12. Semantic HTML"},
+      "isAccordion": false
+    },
+    {
+      "id": "entities",
+      "icon": "fas fa-at",
+      "color": "lime",
+      "title": {"hi": "13. HTML Entities", "en": "13. HTML Entities"},
+      "isAccordion": false
+    },
+    {
+      "id": "iframe",
+      "icon": "fas fa-window-maximize",
+      "color": "fuchsia",
+      "title": {"hi": "14. Iframe", "en": "14. Iframe"},
+      "isAccordion": false
+    },
+    {
+      "id": "meta-tags",
+      "icon": "fas fa-search",
+      "color": "sky",
+      "title": {"hi": "15. Meta Tags", "en": "15. Meta Tags"},
+      "isAccordion": false
+    },
+    {
+      "id": "practice",
+      "icon": "fas fa-dumbbell",
+      "color": "orange",
+      "title": {"hi": "🏋️ Practice Sets", "en": "🏋️ Practice Sets"},
+      "isAccordion": false
+    },
+    {
+      "id": "quiz",
+      "icon": "fas fa-question-circle",
+      "color": "pink",
+      "title": {"hi": "📝 Quiz", "en": "📝 Quiz"},
+      "isAccordion": false
+    },
+    {
+      "id": "editor",
+      "icon": "fas fa-edit",
+      "color": "emerald",
+      "title": {"hi": "🔥 Try it Yourself", "en": "🔥 Try it Yourself"},
+      "isAccordion": false
+    },
+    {
+      "id": "exam",
+      "icon": "fas fa-graduation-cap",
+      "color": "violet",
+      "title": {"hi": "📝 Exam Questions", "en": "📝 Exam Questions"},
+      "isAccordion": false
+    }
+  ],
+  "topicContent": {
+    "what-is-html": {
+      "title": {"hi": "HTML क्या है?", "en": "What is HTML?"},
+      "description": {
+        "hi": "HTML (HyperText Markup Language) एक standard markup language है जिसका use web pages बनाने के लिए किया जाता है। यह web का foundation है।",
+        "en": "HTML (HyperText Markup Language) is a standard markup language used to create web pages. It is the foundation of the web."
+      },
+      "keyPoints": [
+        {"title": "HyperText", "desc": {"hi": "Text जो दूसरे documents से link होता है", "en": "Text that links to other documents"}},
+        {"title": "Markup", "desc": {"hi": "Content को tags से mark करना", "en": "Marking content with tags"}},
+        {"title": "Language", "desc": {"hi": "Browser को समझने की भाषा", "en": "Language for browsers to understand"}}
+      ],
+      "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>My First Page</title>\n</head>\n<body>\n    <h1>Hello World!</h1>\n    <p>This is my first web page.</p>\n</body>\n</html>",
+      "qna": [
+        {"q": {"hi": "HTML क्या है?", "en": "What is HTML?"}, "a": {"hi": "HTML एक markup language है जिसका use web pages बनाने के लिए होता है।", "en": "HTML is a markup language used to create web pages."}},
+        {"q": {"hi": "HTML का पूरा नाम क्या है?", "en": "What is the full form of HTML?"}, "a": {"hi": "HyperText Markup Language", "en": "HyperText Markup Language"}},
+        {"q": {"hi": "HTML किसने बनाया?", "en": "Who created HTML?"}, "a": {"hi": "Tim Berners-Lee ने 1991 में।", "en": "Tim Berners-Lee in 1991."}},
+        {"q": {"hi": "क्या HTML एक programming language है?", "en": "Is HTML a programming language?"}, "a": {"hi": "नहीं, HTML एक markup language है।", "en": "No, HTML is a markup language."}}
+      ]
+    },
+    "html-history": {
+      "title": {"hi": "HTML का इतिहास", "en": "History of HTML"},
+      "description": {
+        "hi": "HTML को Tim Berners-Lee ने 1991 में CERN में बनाया था। तब से HTML में बहुत changes आए हैं।",
+        "en": "HTML was created by Tim Berners-Lee in 1991 at CERN. Since then, HTML has evolved significantly."
+      },
+      "timeline": [
+        {"year": "1991", "event": {"hi": "HTML का जन्म - Tim Berners-Lee", "en": "HTML Born - Tim Berners-Lee"}},
+        {"year": "1995", "event": {"hi": "HTML 2.0 Released", "en": "HTML 2.0 Released"}},
+        {"year": "1997", "event": {"hi": "HTML 3.2 & 4.0", "en": "HTML 3.2 & 4.0"}},
+        {"year": "2014", "event": {"hi": "HTML5 Official Release", "en": "HTML5 Official Release"}},
+        {"year": "2024", "event": {"hi": "HTML Living Standard", "en": "HTML Living Standard"}}
+      ],
+      "code": "<!-- HTML5 का basic structure -->\n<!DOCTYPE html>\n<html lang=\"hi\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>HTML5 Page</title>\n</head>\n<body>\n    <header>Header</header>\n    <main>Main Content</main>\n    <footer>Footer</footer>\n</body>\n</html>",
+      "qna": [
+        {"q": {"hi": "HTML किसने बनाया?", "en": "Who created HTML?"}, "a": {"hi": "Tim Berners-Lee", "en": "Tim Berners-Lee"}},
+        {"q": {"hi": "HTML कब बना?", "en": "When was HTML created?"}, "a": {"hi": "1991 में", "en": "In 1991"}},
+        {"q": {"hi": "Latest HTML version?", "en": "Latest HTML version?"}, "a": {"hi": "HTML5 (Living Standard)", "en": "HTML5 (Living Standard)"}}
+      ]
+    },
+    "html-versions": {
+      "title": {"hi": "HTML Versions", "en": "HTML Versions"},
+      "description": {
+        "hi": "HTML के कई versions आए हैं। हर version में नई features add हुई हैं।",
+        "en": "HTML has gone through many versions. Each version added new features."
+      },
+      "versions": [
+        {"name": "HTML 1.0", "year": "1991", "features": {"hi": "Basic tags जैसे headings, paragraphs", "en": "Basic tags like headings, paragraphs"}},
+        {"name": "HTML 2.0", "year": "1995", "features": {"hi": "Forms, tables support", "en": "Forms, tables support"}},
+        {"name": "HTML 3.2", "year": "1997", "features": {"hi": "Scripts, applets, tables", "en": "Scripts, applets, tables"}},
+        {"name": "HTML 4.01", "year": "1999", "features": {"hi": "CSS support, accessibility", "en": "CSS support, accessibility"}},
+        {"name": "XHTML", "year": "2000", "features": {"hi": "XML-based strict syntax", "en": "XML-based strict syntax"}},
+        {"name": "HTML5", "year": "2014", "features": {"hi": "Audio, Video, Canvas, Semantic tags", "en": "Audio, Video, Canvas, Semantic tags"}}
+      ],
+      "code": "<!-- HTML4 vs HTML5 DOCTYPE -->\n\n<!-- HTML4 DOCTYPE (लंबा) -->\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n\"http://www.w3.org/TR/html4/strict.dtd\">\n\n<!-- HTML5 DOCTYPE (छोटा) -->\n<!DOCTYPE html>",
+      "qna": [
+        {"q": {"hi": "HTML5 में क्या नया है?", "en": "What's new in HTML5?"}, "a": {"hi": "Audio, Video, Canvas, Semantic elements, Local Storage", "en": "Audio, Video, Canvas, Semantic elements, Local Storage"}},
+        {"q": {"hi": "HTML4 और HTML5 में मुख्य अंतर?", "en": "Main difference between HTML4 and HTML5?"}, "a": {"hi": "HTML5 में multimedia support और semantic tags हैं।", "en": "HTML5 has multimedia support and semantic tags."}}
+      ]
+    },
+    "headings": {
+      "title": {"hi": "Headings H1-H6", "en": "Headings H1-H6"},
+      "description": {
+        "hi": "HTML में 6 levels की headings होती हैं - H1 सबसे बड़ी और H6 सबसे छोटी।",
+        "en": "HTML has 6 levels of headings - H1 is largest and H6 is smallest."
+      },
+      "code": "<h1>Heading 1 - सबसे बड़ी</h1>\n<h2>Heading 2</h2>\n<h3>Heading 3</h3>\n<h4>Heading 4</h4>\n<h5>Heading 5</h5>\n<h6>Heading 6 - सबसे छोटी</h6>",
+      "qna": [
+        {"q": {"hi": "कितनी heading levels होती हैं?", "en": "How many heading levels are there?"}, "a": {"hi": "6 (H1 से H6)", "en": "6 (H1 to H6)"}},
+        {"q": {"hi": "सबसे important heading कौन सी है?", "en": "Which is the most important heading?"}, "a": {"hi": "H1 - एक page में एक ही H1 होनी चाहिए", "en": "H1 - There should be only one H1 per page"}},
+        {"q": {"hi": "Headings SEO के लिए क्यों important हैं?", "en": "Why are headings important for SEO?"}, "a": {"hi": "Search engines headings से content को समझते हैं।", "en": "Search engines understand content through headings."}}
+      ]
+    },
+    "links": {
+      "title": {"hi": "Links (Anchor Tag)", "en": "Links (Anchor Tag)"},
+      "description": {
+        "hi": "HTML में links बनाने के लिए <a> tag use होता है। इससे different pages, sections, emails को link कर सकते हैं।",
+        "en": "In HTML, <a> tag is used to create links. You can link to different pages, sections, emails."
+      },
+      "code": "<!-- External Link -->\n<a href=\"https://google.com\" target=\"_blank\">Google</a>\n\n<!-- Internal Link -->\n<a href=\"#section1\">Go to Section 1</a>\n\n<!-- Email Link -->\n<a href=\"mailto:sudhir@example.com\">Email Me</a>\n\n<!-- Phone Link -->\n<a href=\"tel:+919876543210\">Call Me</a>\n\n<!-- Download Link -->\n<a href=\"file.pdf\" download>Download PDF</a>",
+      "qna": [
+        {"q": {"hi": "Link बनाने के लिए कौन सा tag?", "en": "Which tag is used to create links?"}, "a": {"hi": "<a> (anchor) tag", "en": "<a> (anchor) tag"}},
+        {"q": {"hi": "target=\"_blank\" क्या करता है?", "en": "What does target=\"_blank\" do?"}, "a": {"hi": "Link को new tab में open करता है।", "en": "Opens the link in a new tab."}},
+        {"q": {"hi": "href attribute क्या है?", "en": "What is href attribute?"}, "a": {"hi": "href में destination URL या path होता है।", "en": "href contains the destination URL or path."}}
+      ]
+    },
+    "images": {
+      "title": {"hi": "Images", "en": "Images"},
+      "description": {
+        "hi": "HTML में images दिखाने के लिए <img> tag use होता है। यह एक self-closing tag है।",
+        "en": "In HTML, <img> tag is used to display images. It is a self-closing tag."
+      },
+      "code": "<!-- Basic Image -->\n<img src=\"image.jpg\" alt=\"Description\">\n\n<!-- With Width & Height -->\n<img src=\"photo.png\" alt=\"Photo\" width=\"300\" height=\"200\">\n\n<!-- Image as Link -->\n<a href=\"https://example.com\">\n    <img src=\"logo.png\" alt=\"Logo\">\n</a>\n\n<!-- Responsive Image -->\n<img src=\"pic.jpg\" alt=\"Pic\" style=\"max-width:100%; height:auto;\">",
+      "qna": [
+        {"q": {"hi": "Image tag self-closing है?", "en": "Is image tag self-closing?"}, "a": {"hi": "हाँ, <img> को closing tag की जरूरत नहीं।", "en": "Yes, <img> doesn't need a closing tag."}},
+        {"q": {"hi": "alt attribute क्यों जरूरी है?", "en": "Why is alt attribute important?"}, "a": {"hi": "Accessibility और SEO के लिए। Image न दिखे तो alt text दिखता है।", "en": "For accessibility and SEO. Alt text shows when image doesn't load."}},
+        {"q": {"hi": "Supported image formats?", "en": "Supported image formats?"}, "a": {"hi": "JPG, PNG, GIF, SVG, WebP", "en": "JPG, PNG, GIF, SVG, WebP"}}
+      ]
+    },
+    "lists": {
+      "title": {"hi": "Lists", "en": "Lists"},
+      "description": {
+        "hi": "HTML में 3 types की lists होती हैं - Ordered, Unordered, और Description list।",
+        "en": "HTML has 3 types of lists - Ordered, Unordered, and Description list."
+      },
+      "code": "<!-- Unordered List (Bullets) -->\n<ul>\n    <li>HTML</li>\n    <li>CSS</li>\n    <li>JavaScript</li>\n</ul>\n\n<!-- Ordered List (Numbers) -->\n<ol>\n    <li>First Step</li>\n    <li>Second Step</li>\n    <li>Third Step</li>\n</ol>\n\n<!-- Description List -->\n<dl>\n    <dt>HTML</dt>\n    <dd>HyperText Markup Language</dd>\n    <dt>CSS</dt>\n    <dd>Cascading Style Sheets</dd>\n</dl>",
+      "qna": [
+        {"q": {"hi": "Ordered और Unordered list में अंतर?", "en": "Difference between Ordered and Unordered list?"}, "a": {"hi": "Ordered में numbers (1,2,3), Unordered में bullets (•)", "en": "Ordered has numbers (1,2,3), Unordered has bullets (•)"}},
+        {"q": {"hi": "<li> का use?", "en": "Use of <li>?"}, "a": {"hi": "List item बनाने के लिए", "en": "To create list items"}},
+        {"q": {"hi": "Description list कब use करें?", "en": "When to use description list?"}, "a": {"hi": "Terms और definitions के लिए (जैसे glossary)", "en": "For terms and definitions (like glossary)"}}
+      ]
+    },
+    "tables": {
+      "title": {"hi": "Tables", "en": "Tables"},
+      "description": {
+        "hi": "HTML में data को tabular format में दिखाने के लिए <table> tag use होता है।",
+        "en": "In HTML, <table> tag is used to display data in tabular format."
+      },
+      "code": "<table border=\"1\">\n    <thead>\n        <tr>\n            <th>Name</th>\n            <th>Age</th>\n            <th>City</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td>Sudhir</td>\n            <td>25</td>\n            <td>Delhi</td>\n        </tr>\n        <tr>\n            <td>Rahul</td>\n            <td>30</td>\n            <td>Mumbai</td>\n        </tr>\n    </tbody>\n</table>",
+      "qna": [
+        {"q": {"hi": "<th> और <td> में अंतर?", "en": "Difference between <th> and <td>?"}, "a": {"hi": "<th> header cell (bold), <td> data cell", "en": "<th> is header cell (bold), <td> is data cell"}},
+        {"q": {"hi": "colspan क्या करता है?", "en": "What does colspan do?"}, "a": {"hi": "Multiple columns को merge करता है।", "en": "Merges multiple columns."}},
+        {"q": {"hi": "rowspan क्या करता है?", "en": "What does rowspan do?"}, "a": {"hi": "Multiple rows को merge करता है।", "en": "Merges multiple rows."}}
+      ]
+    },
+    "forms": {
+      "title": {"hi": "Forms", "en": "Forms"},
+      "description": {
+        "hi": "Forms user से data collect करने के लिए use होते हैं। इसमें विभिन्न input types होते हैं।",
+        "en": "Forms are used to collect data from users. They contain various input types."
+      },
+      "code": "<form action=\"/submit\" method=\"POST\">\n    <label for=\"name\">Name:</label>\n    <input type=\"text\" id=\"name\" name=\"name\" required>\n    \n    <label for=\"email\">Email:</label>\n    <input type=\"email\" id=\"email\" name=\"email\">\n    \n    <label for=\"pass\">Password:</label>\n    <input type=\"password\" id=\"pass\" name=\"password\">\n    \n    <label>Gender:</label>\n    <input type=\"radio\" name=\"gender\" value=\"male\"> Male\n    <input type=\"radio\" name=\"gender\" value=\"female\"> Female\n    \n    <label>\n        <input type=\"checkbox\" name=\"agree\"> I agree\n    </label>\n    \n    <select name=\"city\">\n        <option value=\"delhi\">Delhi</option>\n        <option value=\"mumbai\">Mumbai</option>\n    </select>\n    \n    <textarea name=\"message\" rows=\"4\"></textarea>\n    \n    <button type=\"submit\">Submit</button>\n</form>",
+      "qna": [
+        {"q": {"hi": "GET और POST में अंतर?", "en": "Difference between GET and POST?"}, "a": {"hi": "GET data URL में दिखता है, POST में hidden रहता है।", "en": "GET data shows in URL, POST keeps it hidden."}},
+        {"q": {"hi": "required attribute क्या करता है?", "en": "What does required attribute do?"}, "a": {"hi": "Field को mandatory बनाता है।", "en": "Makes the field mandatory."}},
+        {"q": {"hi": "Input types कितने हैं?", "en": "How many input types are there?"}, "a": {"hi": "20+ (text, email, password, number, date, file, etc.)", "en": "20+ (text, email, password, number, date, file, etc.)"}}
+      ]
+    },
+    "semantic": {
+      "title": {"hi": "Semantic HTML", "en": "Semantic HTML"},
+      "description": {
+        "hi": "Semantic elements अपने content का meaning clearly बताते हैं। ये SEO और accessibility के लिए important हैं।",
+        "en": "Semantic elements clearly describe their meaning. They are important for SEO and accessibility."
+      },
+      "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Semantic HTML</title>\n</head>\n<body>\n    <header>\n        <nav>\n            <a href=\"#\">Home</a>\n            <a href=\"#\">About</a>\n        </nav>\n    </header>\n    \n    <main>\n        <article>\n            <h1>Article Title</h1>\n            <p>Article content...</p>\n        </article>\n        \n        <section>\n            <h2>Section Title</h2>\n            <p>Section content...</p>\n        </section>\n        \n        <aside>\n            <h3>Related Links</h3>\n        </aside>\n    </main>\n    \n    <footer>\n        <p>&copy; 2024 Sudhir Kumar</p>\n    </footer>\n</body>\n</html>",
+      "qna": [
+        {"q": {"hi": "Semantic elements क्यों use करें?", "en": "Why use semantic elements?"}, "a": {"hi": "SEO, accessibility, और code readability के लिए।", "en": "For SEO, accessibility, and code readability."}},
+        {"q": {"hi": "<div> और <section> में अंतर?", "en": "Difference between <div> and <section>?"}, "a": {"hi": "<section> semantic है, <div> generic container है।", "en": "<section> is semantic, <div> is a generic container."}},
+        {"q": {"hi": "<article> कब use करें?", "en": "When to use <article>?"}, "a": {"hi": "Independent content के लिए जैसे blog post, news article।", "en": "For independent content like blog post, news article."}}
+      ]
+    }
+  },
+  "practiceSets": [
+    {
+      "id": 1,
+      "title": {"hi": "Basic HTML Structure", "en": "Basic HTML Structure"},
+      "difficulty": "Easy",
+      "description": {"hi": "एक basic HTML page बनाएं जिसमें DOCTYPE, html, head, title, और body हो।", "en": "Create a basic HTML page with DOCTYPE, html, head, title, and body."},
+      "starterCode": "<!-- अपना code यहाँ लिखें -->\n\n",
+      "solutionCode": "<!DOCTYPE html>\n<html>\n<head>\n    <title>My First Page</title>\n</head>\n<body>\n    <h1>Hello World!</h1>\n    <p>This is my first web page.</p>\n</body>\n</html>",
+      "hints": ["DOCTYPE से शुरू करें", "html tag के अंदर head और body होती है", "title head section में होती है"]
+    },
+    {
+      "id": 2,
+      "title": {"hi": "Headings Practice", "en": "Headings Practice"},
+      "difficulty": "Easy",
+      "description": {"hi": "सभी 6 headings (H1-H6) use करके एक page बनाएं।", "en": "Create a page using all 6 headings (H1-H6)."},
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- यहाँ headings लिखें -->\n    \n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html>\n<body>\n    <h1>Main Heading</h1>\n    <h2>Sub Heading</h2>\n    <h3>Section Heading</h3>\n    <h4>Sub Section</h4>\n    <h5>Small Heading</h5>\n    <h6>Smallest Heading</h6>\n</body>\n</html>",
+      "hints": ["H1 सबसे बड़ी है", "H6 सबसे छोटी है"]
+    },
+    {
+      "id": 3,
+      "title": {"hi": "Links & Images", "en": "Links & Images"},
+      "difficulty": "Medium",
+      "description": {"hi": "एक page बनाएं जिसमें external link, internal link, और image हो।", "en": "Create a page with external link, internal link, and image."},
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- Links और Image यहाँ add करें -->\n    \n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html>\n<body>\n    <h1>Links & Images Demo</h1>\n    \n    <a href=\"https://google.com\" target=\"_blank\">Visit Google</a>\n    <br><br>\n    \n    <a href=\"#footer\">Go to Footer</a>\n    <br><br>\n    \n    <img src=\"https://via.placeholder.com/300x200\" alt=\"Sample Image\">\n    \n    <footer id=\"footer\">\n        <p>This is footer section</p>\n    </footer>\n</body>\n</html>",
+      "hints": ["External link के लिए target=\"_blank\" use करें", "Internal link के लिए # और id use करें", "Image में alt attribute जरूरी है"]
+    },
+    {
+      "id": 4,
+      "title": {"hi": "Table बनाएं", "en": "Create a Table"},
+      "difficulty": "Medium",
+      "description": {"hi": "एक table बनाएं जिसमें 3 columns और 4 rows हों। Header row भी होनी चाहिए।", "en": "Create a table with 3 columns and 4 rows. Include a header row."},
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n    <h1>Student Data</h1>\n    <!-- Table यहाँ बनाएं -->\n    \n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html>\n<body>\n    <h1>Student Data</h1>\n    <table border=\"1\">\n        <tr>\n            <th>Name</th>\n            <th>Age</th>\n            <th>City</th>\n        </tr>\n        <tr>\n            <td>Sudhir</td>\n            <td>25</td>\n            <td>Delhi</td>\n        </tr>\n        <tr>\n            <td>Rahul</td>\n            <td>22</td>\n            <td>Mumbai</td>\n        </tr>\n        <tr>\n            <td>Priya</td>\n            <td>24</td>\n            <td>Bangalore</td>\n        </tr>\n    </table>\n</body>\n</html>",
+      "hints": ["<table> से शुरू करें", "<tr> row के लिए", "<th> header के लिए, <td> data के लिए"]
+    },
+    {
+      "id": 5,
+      "title": {"hi": "Complete Form", "en": "Complete Form"},
+      "difficulty": "Hard",
+      "description": {"hi": "एक registration form बनाएं जिसमें name, email, password, gender (radio), hobbies (checkbox), city (select), और message (textarea) हो।", "en": "Create a registration form with name, email, password, gender (radio), hobbies (checkbox), city (select), and message (textarea)."},
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n    <h1>Registration Form</h1>\n    <form>\n        <!-- Form elements यहाँ add करें -->\n        \n    </form>\n</body>\n</html>",
+      "solutionCode": "<!DOCTYPE html>\n<html>\n<body>\n    <h1>Registration Form</h1>\n    <form>\n        <label>Name:</label><br>\n        <input type=\"text\" name=\"name\" required><br><br>\n        \n        <label>Email:</label><br>\n        <input type=\"email\" name=\"email\" required><br><br>\n        \n        <label>Password:</label><br>\n        <input type=\"password\" name=\"password\"><br><br>\n        \n        <label>Gender:</label><br>\n        <input type=\"radio\" name=\"gender\" value=\"male\"> Male\n        <input type=\"radio\" name=\"gender\" value=\"female\"> Female<br><br>\n        \n        <label>Hobbies:</label><br>\n        <input type=\"checkbox\" name=\"hobby\" value=\"reading\"> Reading\n        <input type=\"checkbox\" name=\"hobby\" value=\"sports\"> Sports\n        <input type=\"checkbox\" name=\"hobby\" value=\"music\"> Music<br><br>\n        \n        <label>City:</label><br>\n        <select name=\"city\">\n            <option value=\"\">Select City</option>\n            <option value=\"delhi\">Delhi</option>\n            <option value=\"mumbai\">Mumbai</option>\n            <option value=\"bangalore\">Bangalore</option>\n        </select><br><br>\n        \n        <label>Message:</label><br>\n        <textarea name=\"message\" rows=\"4\" cols=\"30\"></textarea><br><br>\n        \n        <button type=\"submit\">Register</button>\n    </form>\n</body>\n</html>",
+      "hints": ["हर input के लिए label use करें", "Radio buttons में same name होना चाहिए", "Select में option elements होते हैं"]
+    }
+  ],
+  "quizQuestions": [
+    {
+      "id": 1,
+      "question": {"hi": "HTML का पूरा नाम क्या है?", "en": "What is the full form of HTML?"},
+      "options": [
+        "Hyper Text Markup Language",
+        "High Text Markup Language",
+        "Hyper Tabular Markup Language",
+        "None of these"
+      ],
+      "correct": 0,
+      "explanation": {"hi": "HTML का पूरा नाम HyperText Markup Language है।", "en": "HTML stands for HyperText Markup Language."}
+    },
+    {
+      "id": 2,
+      "question": {"hi": "HTML में सबसे बड़ी heading कौन सी है?", "en": "Which is the largest heading in HTML?"},
+      "options": ["<h6>", "<h1>", "<h3>", "<heading>"],
+      "correct": 1,
+      "explanation": {"hi": "H1 सबसे बड़ी heading है और H6 सबसे छोटी।", "en": "H1 is the largest heading and H6 is the smallest."}
+    },
+    {
+      "id": 3,
+      "question": {"hi": "Link बनाने के लिए कौन सा tag use होता है?", "en": "Which tag is used to create a link?"},
+      "options": ["<link>", "<a>", "<href>", "<url>"],
+      "correct": 1,
+      "explanation": {"hi": "<a> (anchor) tag link बनाने के लिए use होता है।", "en": "<a> (anchor) tag is used to create links."}
+    },
+    {
+      "id": 4,
+      "question": {"hi": "Image tag में alt attribute क्यों जरूरी है?", "en": "Why is alt attribute important in image tag?"},
+      "options": [
+        "Image size के लिए",
+        "Image color के लिए",
+        "Accessibility और SEO के लिए",
+        "Image format के लिए"
+      ],
+      "correct": 2,
+      "explanation": {"hi": "alt attribute accessibility और SEO के लिए important है।", "en": "alt attribute is important for accessibility and SEO."}
+    },
+    {
+      "id": 5,
+      "question": {"hi": "<br> tag क्या करता है?", "en": "What does <br> tag do?"},
+      "options": ["Bold text", "Line break", "Border", "Background"],
+      "correct": 1,
+      "explanation": {"hi": "<br> tag line break (new line) के लिए use होता है।", "en": "<br> tag is used for line break (new line)."}
+    },
+    {
+      "id": 6,
+      "question": {"hi": "Unordered list के लिए कौन सा tag है?", "en": "Which tag is used for unordered list?"},
+      "options": ["<ol>", "<ul>", "<li>", "<list>"],
+      "correct": 1,
+      "explanation": {"hi": "<ul> unordered list के लिए और <ol> ordered list के लिए।", "en": "<ul> is for unordered list and <ol> is for ordered list."}
+    },
+    {
+      "id": 7,
+      "question": {"hi": "Table में header cell के लिए कौन सा tag?", "en": "Which tag for header cell in table?"},
+      "options": ["<td>", "<th>", "<tr>", "<thead>"],
+      "correct": 1,
+      "explanation": {"hi": "<th> table header cell के लिए, <td> data cell के लिए।", "en": "<th> is for table header cell, <td> is for data cell."}
+    },
+    {
+      "id": 8,
+      "question": {"hi": "Form submit करने के लिए button का default type क्या है?", "en": "What is the default type of button for form submission?"},
+      "options": ["button", "submit", "reset", "send"],
+      "correct": 1,
+      "explanation": {"hi": "Button का default type submit होता है।", "en": "Default type of button is submit."}
+    },
+    {
+      "id": 9,
+      "question": {"hi": "HTML5 में कौन सा semantic element नहीं है?", "en": "Which is NOT a semantic element in HTML5?"},
+      "options": ["<header>", "<div>", "<article>", "<footer>"],
+      "correct": 1,
+      "explanation": {"hi": "<div> generic container है, semantic नहीं।", "en": "<div> is a generic container, not semantic."}
+    },
+    {
+      "id": 10,
+      "question": {"hi": "HTML किसने बनाया?", "en": "Who created HTML?"},
+      "options": ["Bill Gates", "Steve Jobs", "Tim Berners-Lee", "Mark Zuckerberg"],
+      "correct": 2,
+      "explanation": {"hi": "Tim Berners-Lee ने 1991 में HTML बनाया।", "en": "Tim Berners-Lee created HTML in 1991."}
+    },
+    {
+      "id": 11,
+      "question": {"hi": "<!DOCTYPE html> क्या declare करता है?", "en": "What does <!DOCTYPE html> declare?"},
+      "options": ["HTML version", "Page title", "Character set", "Language"],
+      "correct": 0,
+      "explanation": {"hi": "DOCTYPE HTML version declare करता है (HTML5)।", "en": "DOCTYPE declares the HTML version (HTML5)."}
+    },
+    {
+      "id": 12,
+      "question": {"hi": "target=\"_blank\" क्या करता है?", "en": "What does target=\"_blank\" do?"},
+      "options": ["Link delete करता है", "New tab में open करता है", "Link hide करता है", "Color change करता है"],
+      "correct": 1,
+      "explanation": {"hi": "target=\"_blank\" link को new tab में open करता है।", "en": "target=\"_blank\" opens the link in a new tab."}
+    },
+    {
+      "id": 13,
+      "question": {"hi": "Input type=\"password\" क्या करता है?", "en": "What does input type=\"password\" do?"},
+      "options": ["Password generate करता है", "Text को dots में दिखाता है", "Password validate करता है", "Password encrypt करता है"],
+      "correct": 1,
+      "explanation": {"hi": "Password type input में text dots में दिखता है।", "en": "Password type shows text as dots."}
+    },
+    {
+      "id": 14,
+      "question": {"hi": "&nbsp; का use क्या है?", "en": "What is the use of &nbsp;?"},
+      "options": ["New line", "Non-breaking space", "Bold text", "Italic text"],
+      "correct": 1,
+      "explanation": {"hi": "&nbsp; non-breaking space (extra space) के लिए।", "en": "&nbsp; is for non-breaking space (extra space)."}
+    },
+    {
+      "id": 15,
+      "question": {"hi": "<meta charset=\"UTF-8\"> कहाँ होता है?", "en": "Where is <meta charset=\"UTF-8\"> placed?"},
+      "options": ["<body>", "<head>", "<footer>", "<title>"],
+      "correct": 1,
+      "explanation": {"hi": "Meta tags <head> section में होते हैं।", "en": "Meta tags are placed in <head> section."}
+    }
+  ],
+  "examQuestions": [
+    {
+      "q": {"hi": "HTML और HTML5 में 5 अंतर बताएं।", "en": "List 5 differences between HTML and HTML5."},
+      "a": {
+        "hi": "1. HTML5 में DOCTYPE simple है\n2. HTML5 में audio/video tags हैं\n3. HTML5 में semantic elements हैं\n4. HTML5 में canvas और SVG support है\n5. HTML5 में local storage है",
+        "en": "1. DOCTYPE is simple in HTML5\n2. HTML5 has audio/video tags\n3. HTML5 has semantic elements\n4. HTML5 has canvas and SVG support\n5. HTML5 has local storage"
+      }
+    },
+    {
+      "q": {"hi": "Block और Inline elements में अंतर बताएं।", "en": "Explain difference between Block and Inline elements."},
+      "a": {
+        "hi": "Block elements:\n- पूरी width लेते हैं\n- New line से शुरू होते हैं\n- Examples: div, p, h1-h6\n\nInline elements:\n- सिर्फ content जितनी width\n- Same line में रहते हैं\n- Examples: span, a, strong",
+        "en": "Block elements:\n- Take full width\n- Start on new line\n- Examples: div, p, h1-h6\n\nInline elements:\n- Take only content width\n- Stay on same line\n- Examples: span, a, strong"
+      }
+    },
+    {
+      "q": {"hi": "Semantic और Non-Semantic tags में अंतर।", "en": "Difference between Semantic and Non-Semantic tags."},
+      "a": {
+        "hi": "Semantic tags:\n- Content का meaning बताते हैं\n- SEO friendly\n- Examples: header, nav, article, section, footer\n\nNon-Semantic tags:\n- कोई meaning नहीं\n- Generic containers\n- Examples: div, span",
+        "en": "Semantic tags:\n- Describe meaning of content\n- SEO friendly\n- Examples: header, nav, article, section, footer\n\nNon-Semantic tags:\n- No meaning\n- Generic containers\n- Examples: div, span"
+      }
+    },
+    {
+      "q": {"hi": "Form elements को example के साथ समझाएं।", "en": "Explain Form elements with examples."},
+      "a": {
+        "hi": "<form> - Form container\n<input> - User input field\n<label> - Input का label\n<select> - Dropdown menu\n<option> - Dropdown options\n<textarea> - Multi-line text\n<button> - Submit/action button\n\nInput types: text, email, password, number, date, checkbox, radio, file",
+        "en": "<form> - Form container\n<input> - User input field\n<label> - Label for input\n<select> - Dropdown menu\n<option> - Dropdown options\n<textarea> - Multi-line text\n<button> - Submit/action button\n\nInput types: text, email, password, number, date, checkbox, radio, file"
+      }
+    },
+    {
+      "q": {"hi": "Table structure को example के साथ समझाएं।", "en": "Explain Table structure with example."},
+      "a": {
+        "hi": "<table> - Table container\n<thead> - Table header section\n<tbody> - Table body section\n<tfoot> - Table footer section\n<tr> - Table row\n<th> - Header cell (bold)\n<td> - Data cell\n\nAttributes:\n- border - Table border\n- colspan - Columns merge\n- rowspan - Rows merge",
+        "en": "<table> - Table container\n<thead> - Table header section\n<tbody> - Table body section\n<tfoot> - Table footer section\n<tr> - Table row\n<th> - Header cell (bold)\n<td> - Data cell\n\nAttributes:\n- border - Table border\n- colspan - Merge columns\n- rowspan - Merge rows"
+      }
+    }
+  ],
+  "ui": {
+    "buttons": {
+      "run": {"hi": "Run", "en": "Run"},
+      "copy": {"hi": "Copy", "en": "Copy"},
+      "reset": {"hi": "Reset", "en": "Reset"},
+      "showSolution": {"hi": "Solution देखें", "en": "Show Solution"},
+      "hideSolution": {"hi": "Solution छुपाएं", "en": "Hide Solution"},
+      "nextQuestion": {"hi": "अगला Question", "en": "Next Question"},
+      "prevQuestion": {"hi": "पिछला Question", "en": "Previous Question"},
+      "submit": {"hi": "Submit", "en": "Submit"},
+      "tryAgain": {"hi": "फिर से Try करें", "en": "Try Again"},
+      "showHint": {"hi": "Hint दिखाएं", "en": "Show Hint"}
+    },
+    "labels": {
+      "topics": {"hi": "Topics", "en": "Topics"},
+      "search": {"hi": "Search topics...", "en": "Search topics..."},
+      "qnaSection": {"hi": "Q&A Section", "en": "Q&A Section"},
+      "codeExample": {"hi": "Code Example", "en": "Code Example"},
+      "output": {"hi": "Output", "en": "Output"},
+      "difficulty": {"hi": "Difficulty", "en": "Difficulty"},
+      "easy": {"hi": "Easy", "en": "Easy"},
+      "medium": {"hi": "Medium", "en": "Medium"},
+      "hard": {"hi": "Hard", "en": "Hard"},
+      "score": {"hi": "Score", "en": "Score"},
+      "question": {"hi": "Question", "en": "Question"},
+      "correct": {"hi": "सही!", "en": "Correct!"},
+      "incorrect": {"hi": "गलत!", "en": "Incorrect!"},
+      "quizComplete": {"hi": "Quiz Complete!", "en": "Quiz Complete!"},
+      "yourScore": {"hi": "आपका Score", "en": "Your Score"},
+      "practiceSets": {"hi": "Practice Sets", "en": "Practice Sets"},
+      "examQuestions": {"hi": "Exam Questions", "en": "Exam Questions"}
+    }
+  }
+}
+  </script>
+
+  <!-- App shell -->
+  <div class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-40 glass border-b border-slate-800/70">
+      <div class="mx-auto max-w-[1400px] px-4 py-3 flex items-center gap-3">
+        <button id="btnMobileNav" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-900/50 ring-soft hover:bg-slate-800/50" aria-label="Open topics">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-500/20 via-pink-500/15 to-sky-500/15 ring-soft flex items-center justify-center">
+            <i id="brandIcon" class="text-2xl text-orange-400"></i>
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 min-w-0">
+              <h1 id="appName" class="font-bold tracking-tight text-base sm:text-lg truncate"></h1>
+              <span id="appVersion" class="hidden sm:inline-flex text-xs text-slate-200/90 bg-slate-800/60 ring-soft px-2 py-0.5 rounded-full"></span>
+            </div>
+            <div class="text-xs text-slate-300/80 truncate" id="appByline"></div>
+          </div>
+        </div>
+
+        <div class="ml-auto flex items-center gap-2">
+          <div class="hidden lg:flex items-center gap-2 text-xs text-slate-300/80">
+            <span class="kbd">Ctrl</span><span class="kbd">K</span><span>Search</span>
+            <span class="mx-1 text-slate-600">•</span>
+            <span class="kbd">Ctrl</span><span class="kbd">Enter</span><span>Run</span>
+          </div>
+
+          <select id="languageSelect" class="text-sm bg-slate-900/60 ring-soft border border-slate-700/70 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500/50"></select>
+
+          <a id="githubLink" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 text-sm bg-slate-900/60 ring-soft border border-slate-700/70 rounded-xl px-3 py-2 hover:bg-slate-800/60" href="#">
+            <i class="fa-brands fa-github"></i>
+            <span class="hidden sm:inline">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex-1 mx-auto max-w-[1400px] w-full px-4 py-4">
+      <div class="grid md:grid-cols-[340px_1fr] gap-4">
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="hidden md:flex flex-col h-[calc(var(--vh,1vh)*100-110px)] rounded-2xl ring-soft border border-slate-800/70 bg-slate-950/40 overflow-hidden">
+          <div class="p-4 border-b border-slate-800/70">
+            <div class="flex items-center gap-2">
+              <div class="text-sm font-semibold" id="lblTopics"></div>
+              <span class="ml-auto text-xs text-slate-400" id="topicCount"></span>
+            </div>
+
+            <div class="mt-3">
+              <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input id="topicSearch" class="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 focus:outline-none focus:ring-2 focus:ring-sky-500/40" type="text" placeholder="Search topics..." />
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                <span id="progressLabel">Progress</span>
+                <span id="progressCount">0%</span>
+              </div>
+              <div class="mt-2 w-full h-2 rounded-full bg-slate-900/60 ring-soft overflow-hidden">
+                <div id="progressBar" class="h-full bg-emerald-500/60" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <nav id="topicNav" class="p-2 overflow-auto scrollbar-thin"></nav>
+
+          <div class="p-3 border-t border-slate-800/70 text-xs text-slate-400">
+            <div class="flex items-center justify-between gap-2">
+              <span id="footerUser" class="truncate"></span>
+              <div class="flex items-center gap-2">
+                <button id="btnExport" class="px-2 py-1 rounded-lg bg-slate-900/50 ring-soft hover:bg-slate-800/50">Export</button>
+                <button id="btnImport" class="px-2 py-1 rounded-lg bg-slate-900/50 ring-soft hover:bg-slate-800/50">Import</button>
+                <button id="btnResetProgress" class="px-2 py-1 rounded-lg bg-slate-900/50 ring-soft hover:bg-slate-800/50">Reset</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Mobile drawer -->
+        <div id="mobileDrawer" class="md:hidden fixed inset-0 z-50 hidden">
+          <div id="mobileBackdrop" class="absolute inset-0 bg-black/60"></div>
+          <div class="absolute left-0 top-0 bottom-0 w-[88vw] max-w-[420px] bg-slate-950 border-r border-slate-800/70">
+            <div class="p-4 border-b border-slate-800/70 flex items-center gap-2">
+              <div class="font-semibold" id="lblTopicsMobile"></div>
+              <button id="btnCloseDrawer" class="ml-auto w-10 h-10 rounded-xl bg-slate-900/50 ring-soft" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="p-4 border-b border-slate-800/70">
+              <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input id="topicSearchMobile" class="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 focus:outline-none focus:ring-2 focus:ring-sky-500/40" type="text" placeholder="Search topics..." />
+              </div>
+              <div class="mt-3">
+                <div class="flex items-center justify-between text-xs text-slate-400">
+                  <span>Progress</span>
+                  <span id="progressCountMobile">0%</span>
+                </div>
+                <div class="mt-2 w-full h-2 rounded-full bg-slate-900/60 ring-soft overflow-hidden">
+                  <div id="progressBarMobile" class="h-full bg-emerald-500/60" style="width:0%"></div>
+                </div>
+              </div>
+            </div>
+            <nav id="topicNavMobile" class="p-2 overflow-auto h-[calc(var(--vh,1vh)*100-290px)] scrollbar-thin"></nav>
+            <div class="p-3 border-t border-slate-800/70 text-xs text-slate-400 safe-bottom-pad">
+              <div class="flex items-center gap-2">
+                <button id="btnExportMobile" class="px-2 py-1 rounded-lg bg-slate-900/50 ring-soft">Export</button>
+                <button id="btnImportMobile" class="px-2 py-1 rounded-lg bg-slate-900/50 ring-soft">Import</button>
+                <button id="btnResetProgressMobile" class="ml-auto px-2 py-1 rounded-lg bg-slate-900/50 ring-soft">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <main class="min-h-[calc(var(--vh,1vh)*100-110px)] rounded-2xl ring-soft border border-slate-800/70 bg-slate-950/40 overflow-hidden">
+          <div class="p-4 sm:p-6 border-b border-slate-800/70">
+            <div class="flex items-start gap-3">
+              <div class="min-w-0">
+                <div class="text-xs text-slate-400" id="breadcrumbs"></div>
+                <h2 id="pageTitle" class="mt-1 text-xl sm:text-2xl font-bold tracking-tight"></h2>
+                <div id="pageSubtitle" class="mt-2 text-sm text-slate-300/90"></div>
+              </div>
+              <div class="ml-auto flex items-center gap-2">
+                <button id="btnMarkDone" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-sm">Done</span>
+                </button>
+                <button id="btnNotes" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50">
+                  <i class="fa-solid fa-note-sticky"></i>
+                  <span class="text-sm">Notes</span>
+                </button>
+                <button id="btnShare" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50">
+                  <i class="fa-solid fa-link"></i>
+                  <span class="text-sm">Copy Link</span>
+                </button>
+                <button id="btnGoEditor" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span class="text-sm">Editor</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="content" class="p-4 sm:p-6 pb-28 md:pb-6 overflow-auto h-[calc(var(--vh,1vh)*100-220px)] scrollbar-thin"></div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Mobile bottom navigation -->
+    <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 glass border-t border-slate-800/70">
+      <div class="safe-bottom-pad">
+        <div class="mx-auto max-w-[1400px] px-3 py-2 grid grid-cols-5 gap-2">
+          <button id="mbTopics" class="rounded-xl bg-slate-900/40 ring-soft border border-slate-700/50 px-2 py-2 text-xs">
+            <div class="flex flex-col items-center gap-1">
+              <i class="fa-solid fa-list"></i>
+              <span>Topics</span>
+            </div>
+          </button>
+          <button id="mbHome" class="rounded-xl bg-slate-900/40 ring-soft border border-slate-700/50 px-2 py-2 text-xs">
+            <div class="flex flex-col items-center gap-1">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </div>
+          </button>
+          <button id="mbPractice" class="rounded-xl bg-slate-900/40 ring-soft border border-slate-700/50 px-2 py-2 text-xs">
+            <div class="flex flex-col items-center gap-1">
+              <i class="fa-solid fa-dumbbell"></i>
+              <span>Practice</span>
+            </div>
+          </button>
+          <button id="mbQuiz" class="rounded-xl bg-slate-900/40 ring-soft border border-slate-700/50 px-2 py-2 text-xs">
+            <div class="flex flex-col items-center gap-1">
+              <i class="fa-solid fa-circle-question"></i>
+              <span>Quiz</span>
+            </div>
+          </button>
+          <button id="mbEditor" class="rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 px-2 py-2 text-xs">
+            <div class="flex flex-col items-center gap-1">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Editor</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed left-1/2 -translate-x-1/2 z-[60] hidden">
+      <div class="px-4 py-3 rounded-2xl ring-soft border border-slate-700/60 bg-slate-900/70 text-sm text-slate-100">
+        <span id="toastText">Copied</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notes modal -->
+  <div id="notesModal" class="fixed inset-0 z-[70] hidden">
+    <div id="notesBackdrop" class="absolute inset-0 bg-black/60"></div>
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92vw] max-w-[720px] rounded-2xl border border-slate-800/70 bg-slate-950 ring-soft overflow-hidden">
+      <div class="px-4 py-3 border-b border-slate-800/70 flex items-center gap-2">
+        <div class="font-semibold"><i class="fa-solid fa-note-sticky mr-2"></i>Notes</div>
+        <div class="ml-auto flex items-center gap-2">
+          <button id="btnCopyNotes" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+            <i class="fa-regular fa-copy mr-2"></i>Copy
+          </button>
+          <button id="btnCloseNotes" class="w-10 h-10 rounded-xl bg-slate-900/50 ring-soft" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="text-xs text-slate-400" id="notesTopicLabel"></div>
+        <textarea id="notesTextarea" class="mt-2 w-full h-[280px] resize-none rounded-2xl bg-black/40 ring-soft border border-slate-800/70 p-4 text-sm leading-6 focus:outline-none focus:ring-2 focus:ring-sky-500/40" placeholder="Write your notes here..."></textarea>
+        <div class="mt-3 flex items-center gap-2">
+          <button id="btnSaveNotes" class="px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15">
+            <i class="fa-solid fa-floppy-disk mr-2"></i>Save
+          </button>
+          <button id="btnClearNotes" class="px-4 py-2 rounded-xl bg-rose-500/10 text-rose-200 ring-soft border border-rose-400/20 hover:bg-rose-500/15">
+            <i class="fa-solid fa-trash mr-2"></i>Clear
+          </button>
+          <div class="ml-auto text-xs text-slate-400">Saved locally</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Utilities ----------
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function debounce(fn, wait=200) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), wait);
+      };
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast('Copied');
+      }
+    }
+
+    function showToast(msg) {
+      $('#toastText').textContent = msg;
+      const el = $('#toast');
+      el.classList.remove('hidden');
+      el.classList.add('shimmer');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => {
+        el.classList.add('hidden');
+        el.classList.remove('shimmer');
+      }, 1200);
+    }
+
+    function colorClass(name) {
+      const map = {
+        yellow: 'bg-yellow-500/15 text-yellow-200 border-yellow-400/25',
+        pink: 'bg-pink-500/15 text-pink-200 border-pink-400/25',
+        orange: 'bg-orange-500/15 text-orange-200 border-orange-400/25',
+        green: 'bg-emerald-500/15 text-emerald-200 border-emerald-400/25',
+        cyan: 'bg-cyan-500/15 text-cyan-200 border-cyan-400/25',
+        blue: 'bg-sky-500/15 text-sky-200 border-sky-400/25',
+        purple: 'bg-purple-500/15 text-purple-200 border-purple-400/25',
+        red: 'bg-rose-500/15 text-rose-200 border-rose-400/25',
+        teal: 'bg-teal-500/15 text-teal-200 border-teal-400/25',
+        indigo: 'bg-indigo-500/15 text-indigo-200 border-indigo-400/25',
+        rose: 'bg-rose-500/15 text-rose-200 border-rose-400/25',
+        amber: 'bg-amber-500/15 text-amber-200 border-amber-400/25',
+        lime: 'bg-lime-500/15 text-lime-200 border-lime-400/25',
+        fuchsia: 'bg-fuchsia-500/15 text-fuchsia-200 border-fuchsia-400/25',
+        sky: 'bg-sky-500/15 text-sky-200 border-sky-400/25',
+        emerald: 'bg-emerald-500/15 text-emerald-200 border-emerald-400/25',
+        violet: 'bg-violet-500/15 text-violet-200 border-violet-400/25'
+      };
+      return map[name] || 'bg-slate-500/10 text-slate-200 border-slate-400/20';
+    }
+
+    function setVhVar() {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    }
+    setVhVar();
+    window.addEventListener('resize', debounce(setVhVar, 120));
+
+    // ---------- Data ----------
+    const DATA = JSON.parse(document.getElementById('seedData').textContent);
+    DATA.app.version = '2.1';
+
+    const EXTRA_CONTENT = {
+      intro: {
+        title: { hi: '🏠 Introduction', en: '🏠 Introduction' },
+        description: {
+          hi: 'यह app आपको HTML को बिल्कुल zero से लेकर practical level तक सिखाने के लिए बनाया गया है। Sidebar से topics चुनें, code examples को copy/run करें, Practice Sets solve करें और Quiz से अपना score check करें।',
+          en: 'This app is designed to teach HTML from absolute basics to practical usage. Pick topics from the sidebar, copy/run code examples, solve Practice Sets, and check your understanding with the Quiz.'
+        },
+        keyPoints: [
+          { title: 'Learn by Topics', desc: { hi: 'Topics + Subtopics में step-by-step सीखें', en: 'Learn step-by-step via Topics + Subtopics' } },
+          { title: 'VS Code-style Editor', desc: { hi: 'Syntax highlighting + line numbers + auto-close tags', en: 'Syntax highlighting + line numbers + auto-close tags' } },
+          { title: 'Progress + Notes', desc: { hi: 'Topic completion + personal notes', en: 'Topic completion + personal notes' } }
+        ],
+        code: "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\" />\n  <title>My First HTML Page</title>\n</head>\n<body>\n  <h1>Hello HTML!</h1>\n  <p>Welcome to the HTML Complete Tutorial.</p>\n</body>\n</html>",
+        qna: [
+          { q: { hi: 'इस app को कैसे use करें?', en: 'How do I use this app?' }, a: { hi: 'Sidebar से topic चुनें → content पढ़ें → code examples run/copy करें → Practice/Quiz complete करें।', en: 'Pick a topic from sidebar → read content → run/copy examples → complete Practice/Quiz.' } },
+          { q: { hi: 'Editor में syntax highlight कैसे आएगा?', en: 'How do I get syntax highlighting in editor?' }, a: { hi: 'Editor page में CodeMirror use होता है, इसलिए VS Code जैसा highlight मिलेगा।', en: 'Editor uses CodeMirror, so you get VS Code-like highlighting.' } }
+        ]
+      },
+
+      'advanced-html': {
+        title: { hi: '16. Advanced HTML (Overview)', en: '16. Advanced HTML (Overview)' },
+        description: {
+          hi: 'इस section में div/span, class/id, modern input types, accessibility (ARIA), SEO और best practices सीखेंगे।',
+          en: 'In this section you will learn div/span, class/id, modern input types, accessibility (ARIA), SEO, and best practices.'
+        },
+        keyPoints: [
+          { title: 'Structure', desc: { hi: 'Div/span से layout समझें', en: 'Use div/span to understand layout' } },
+          { title: 'Forms', desc: { hi: 'Input types + validation', en: 'Input types + validation' } },
+          { title: 'A11y + SEO', desc: { hi: 'Accessible + search-friendly HTML', en: 'Accessible + search-friendly HTML' } }
+        ],
+        code: "<div class=\"card\">\n  <h2>Card</h2>\n  <p><span class=\"tag\">NEW</span> Feature</p>\n</div>",
+        qna: [
+          { q: { hi: 'Advanced HTML में क्या आता है?', en: 'What is covered in Advanced HTML?' }, a: { hi: 'Layout basics, form features, accessibility, SEO, best practices।', en: 'Layout basics, form features, accessibility, SEO, best practices.' } }
+        ]
+      },
+
+      'div-span': {
+        title: { hi: 'Div vs Span', en: 'Div vs Span' },
+        description: {
+          hi: '<div> block-level container है और <span> inline-level container है। Layout में div use करें, text के छोटे हिस्से के लिए span।',
+          en: '<div> is a block-level container, while <span> is an inline-level container. Use div for layout and span for small text parts.'
+        },
+        keyPoints: [
+          { title: 'div', desc: { hi: 'Block element (new line)', en: 'Block element (new line)' } },
+          { title: 'span', desc: { hi: 'Inline element (same line)', en: 'Inline element (same line)' } },
+          { title: 'Styling', desc: { hi: 'class/id से style apply करें', en: 'Use class/id for styling' } }
+        ],
+        code: "<div style=\"border:1px solid #888; padding:12px\">\n  This is a div\n  <span style=\"background:yellow; color:black; padding:2px 6px\">span</span>\n</div>",
+        qna: [
+          { q: { hi: 'span को block बना सकते हैं?', en: 'Can we make span behave like a block?' }, a: { hi: 'हाँ, CSS में display:block या display:inline-block करके।', en: 'Yes, with CSS display:block or display:inline-block.' } }
+        ]
+      },
+
+      'id-class': {
+        title: { hi: 'id vs class', en: 'id vs class' },
+        description: {
+          hi: 'id unique होता है (एक page में एक element), और class reusable होती है (multiple elements)। CSS/JS में selectors के लिए use होता है।',
+          en: 'id is unique (one element per page), while class is reusable (multiple elements). Used as selectors in CSS/JS.'
+        },
+        keyPoints: [
+          { title: 'id', desc: { hi: 'Unique (#)', en: 'Unique (#)' } },
+          { title: 'class', desc: { hi: 'Reusable (.)', en: 'Reusable (.)' } },
+          { title: 'Best practice', desc: { hi: 'Styling के लिए class prefer करें', en: 'Prefer class for styling' } }
+        ],
+        code: "<h1 id=\"pageTitle\">Welcome</h1>\n<p class=\"lead\">This paragraph uses a class.</p>\n<p class=\"lead\">Another paragraph with the same class.</p>",
+        qna: [
+          { q: { hi: 'एक page में कितने id हो सकते हैं?', en: 'How many ids can a page have?' }, a: { hi: 'बहुत सारे, लेकिन हर id unique होना चाहिए।', en: 'Many, but each id must be unique.' } }
+        ]
+      },
+
+      'input-types': {
+        title: { hi: 'HTML Input Types', en: 'HTML Input Types' },
+        description: {
+          hi: 'HTML5 में input types बहुत powerful हैं: email, url, number, date, color, range, file, search। सही type से validation और mobile keyboard improve होता है।',
+          en: 'HTML5 input types are powerful: email, url, number, date, color, range, file, search. Correct types improve validation and mobile keyboards.'
+        },
+        keyPoints: [
+          { title: 'Better UX', desc: { hi: 'Mobile keyboard auto change होता है', en: 'Mobile keyboard adapts automatically' } },
+          { title: 'Validation', desc: { hi: 'Browser basic validation करता है', en: 'Browser provides basic validation' } },
+          { title: 'Accessibility', desc: { hi: 'Labels + proper types', en: 'Labels + proper types' } }
+        ],
+        code: "<form>\n  <label>Email</label>\n  <input type=\"email\" required>\n\n  <label>Website</label>\n  <input type=\"url\" placeholder=\"https://\">\n\n  <label>Age</label>\n  <input type=\"number\" min=\"1\" max=\"120\">\n\n  <label>Birthday</label>\n  <input type=\"date\">\n\n  <button>Submit</button>\n</form>",
+        qna: [
+          { q: { hi: 'type="email" क्या validate करता है?', en: 'What does type="email" validate?' }, a: { hi: 'Basic email format (name@domain) को।', en: 'Basic email format (name@domain).' } }
+        ]
+      },
+
+      'form-validation': {
+        title: { hi: 'Form Validation (HTML5)', en: 'Form Validation (HTML5)' },
+        description: {
+          hi: 'HTML5 validation attributes: required, minlength, maxlength, pattern, min/max, step। Custom validation JS से किया जाता है।',
+          en: 'HTML5 validation attributes: required, minlength, maxlength, pattern, min/max, step. Custom validation can be done with JS.'
+        },
+        keyPoints: [
+          { title: 'required', desc: { hi: 'Field mandatory', en: 'Field mandatory' } },
+          { title: 'pattern', desc: { hi: 'Regex based validation', en: 'Regex based validation' } },
+          { title: 'min/max', desc: { hi: 'Numeric/date limits', en: 'Numeric/date limits' } }
+        ],
+        code: "<form>\n  <label>Username</label>\n  <input\n    type=\"text\"\n    required\n    minlength=\"3\"\n    maxlength=\"12\"\n    pattern=\"[a-zA-Z0-9]+\"\n    title=\"Only letters and numbers\"\n  >\n\n  <button>Submit</button>\n</form>",
+        qna: [
+          { q: { hi: 'pattern attribute क्या है?', en: 'What is the pattern attribute?' }, a: { hi: 'Regular expression (regex) से rule define करता है।', en: 'Defines a validation rule using a regular expression (regex).' } }
+        ]
+      },
+
+      accessibility: {
+        title: { hi: 'Accessibility (A11y) & ARIA', en: 'Accessibility (A11y) & ARIA' },
+        description: {
+          hi: 'Accessible HTML का मतलब है कि screen readers, keyboard users, और assistive tech के लिए content usable हो। ARIA attributes तब use करें जब native HTML sufficient न हो।',
+          en: 'Accessible HTML means content is usable for screen readers, keyboard users, and assistive tech. Use ARIA only when native HTML is not sufficient.'
+        },
+        keyPoints: [
+          { title: 'Use semantic HTML', desc: { hi: 'header/nav/main/footer', en: 'header/nav/main/footer' } },
+          { title: 'Alt text', desc: { hi: 'Images के लिए meaningful alt', en: 'Meaningful alt for images' } },
+          { title: 'ARIA', desc: { hi: 'role, aria-label, aria-expanded', en: 'role, aria-label, aria-expanded' } }
+        ],
+        code: "<button aria-label=\"Close dialog\">\n  <span aria-hidden=\"true\">&times;</span>\n</button>\n\n<img src=\"logo.png\" alt=\"Company logo\">",
+        qna: [
+          { q: { hi: 'ARIA कब use करें?', en: 'When should we use ARIA?' }, a: { hi: 'जब semantic HTML से काम न हो और custom UI बनानी हो।', en: 'When semantic HTML is not enough and you build custom UI.' } }
+        ]
+      },
+
+      'seo-basics': {
+        title: { hi: 'SEO Basics (HTML)', en: 'SEO Basics (HTML)' },
+        description: {
+          hi: 'SEO-friendly HTML में सही heading hierarchy, semantic tags, meta description, alt text, और clean links होते हैं।',
+          en: 'SEO-friendly HTML uses correct heading hierarchy, semantic tags, meta descriptions, alt text, and clean links.'
+        },
+        keyPoints: [
+          { title: 'One H1 per page', desc: { hi: 'Main topic H1', en: 'Main topic H1' } },
+          { title: 'Meta description', desc: { hi: 'Search snippet improve', en: 'Improves search snippet' } },
+          { title: 'Semantic structure', desc: { hi: 'article/section', en: 'article/section' } }
+        ],
+        code: "<head>\n  <title>Learn HTML</title>\n  <meta name=\"description\" content=\"Learn HTML with examples, quiz and practice\">\n</head>\n<body>\n  <header><h1>Learn HTML</h1></header>\n  <main>\n    <article>\n      <h2>What is HTML?</h2>\n      <p>...</p>\n    </article>\n  </main>\n</body>",
+        qna: [
+          { q: { hi: 'Title tag क्यों important है?', en: 'Why is the title tag important?' }, a: { hi: 'Browser tab + search results में दिखता है।', en: 'Shown in browser tab and search results.' } }
+        ]
+      },
+
+      canvas: {
+        title: { hi: 'HTML Canvas', en: 'HTML Canvas' },
+        description: {
+          hi: 'Canvas एक drawing surface है जिस पर JavaScript से graphics बनाते हैं। Games, charts, animations में use होता है।',
+          en: 'Canvas is a drawing surface used with JavaScript to render graphics. Used for games, charts, animations.'
+        },
+        keyPoints: [
+          { title: '<canvas>', desc: { hi: 'Drawing area', en: 'Drawing area' } },
+          { title: '2D context', desc: { hi: 'getContext("2d")', en: 'getContext("2d")' } },
+          { title: 'JS driven', desc: { hi: 'Canvas content JS से बनता है', en: 'Canvas content is JS-driven' } }
+        ],
+        code: "<canvas id=\"c\" width=\"320\" height=\"160\" style=\"border:1px solid #999\"></canvas>\n<script>\n  const ctx = document.getElementById('c').getContext('2d');\n  ctx.fillStyle = '#22c55e';\n  ctx.fillRect(20, 20, 120, 80);\n  ctx.fillStyle = '#60a5fa';\n  ctx.font = '18px sans-serif';\n  ctx.fillText('Canvas!', 170, 70);\n<\/script>",
+        qna: [
+          { q: { hi: 'Canvas का content SEO friendly है?', en: 'Is canvas content SEO-friendly?' }, a: { hi: 'नहीं, क्योंकि content pixels है; text/structure HTML में रखें।', en: 'Not really; it is pixels. Keep important text/structure in HTML.' } }
+        ]
+      },
+
+      svg: {
+        title: { hi: 'SVG (Scalable Vector Graphics)', en: 'SVG (Scalable Vector Graphics)' },
+        description: {
+          hi: 'SVG vector-based graphics है, zoom करने पर quality खराब नहीं होती। Icons, diagrams, charts में use होता है।',
+          en: 'SVG is vector-based graphics and stays sharp when zoomed. Used for icons, diagrams, charts.'
+        },
+        keyPoints: [
+          { title: 'Vector', desc: { hi: 'Sharp at any size', en: 'Sharp at any size' } },
+          { title: 'Inline SVG', desc: { hi: 'HTML में directly लिख सकते हैं', en: 'Can be written directly in HTML' } },
+          { title: 'Stylable', desc: { hi: 'CSS से style', en: 'Stylable with CSS' } }
+        ],
+        code: "<svg width=\"220\" height=\"120\" viewBox=\"0 0 220 120\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect x=\"10\" y=\"10\" width=\"200\" height=\"100\" rx=\"14\" fill=\"#111827\" stroke=\"#60a5fa\" stroke-width=\"2\"/>\n  <circle cx=\"70\" cy=\"60\" r=\"22\" fill=\"#22c55e\"/>\n  <text x=\"110\" y=\"66\" fill=\"#e5e7eb\" font-size=\"16\" font-family=\"sans-serif\">SVG</text>\n</svg>",
+        qna: [
+          { q: { hi: 'SVG और PNG में difference?', en: 'Difference between SVG and PNG?' }, a: { hi: 'SVG vector है; PNG bitmap है। SVG scalable है, PNG zoom पर blur हो सकता है।', en: 'SVG is vector; PNG is bitmap. SVG scales better; PNG can blur when zoomed.' } }
+        ]
+      },
+
+      responsive: {
+        title: { hi: 'Responsive HTML (Basics)', en: 'Responsive HTML (Basics)' },
+        description: {
+          hi: 'Responsive page के लिए viewport meta tag, responsive images, proper layout, और fluid units जरूरी हैं।',
+          en: 'For responsive pages you need viewport meta tag, responsive images, proper layout, and fluid units.'
+        },
+        keyPoints: [
+          { title: 'Viewport', desc: { hi: 'Mobile scaling fix', en: 'Fix mobile scaling' } },
+          { title: 'Responsive images', desc: { hi: 'max-width:100%', en: 'max-width:100%' } },
+          { title: 'Layout', desc: { hi: 'Flex/Grid', en: 'Flex/Grid' } }
+        ],
+        code: "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n<img src=\"https://via.placeholder.com/900x400\" alt=\"Banner\" style=\"max-width:100%; height:auto; border-radius:12px\">",
+        qna: [
+          { q: { hi: 'Viewport tag नहीं हो तो?', en: 'What if viewport meta is missing?' }, a: { hi: 'Mobile पर page zoomed-out दिख सकता है और layout टूट सकता है।', en: 'On mobile the page may appear zoomed out and layout can break.' } }
+        ]
+      },
+
+      'best-practices': {
+        title: { hi: 'HTML Best Practices', en: 'HTML Best Practices' },
+        description: {
+          hi: 'Clean, readable और accessible HTML लिखने के लिए best practices follow करें: semantic tags, alt text, labels, proper nesting, unique ids, meaningful titles।',
+          en: 'Write clean, readable, accessible HTML by following best practices: semantic tags, alt text, labels, proper nesting, unique ids, meaningful titles.'
+        },
+        keyPoints: [
+          { title: 'Semantic first', desc: { hi: 'div से पहले semantic tags देखें', en: 'Prefer semantic tags over divs' } },
+          { title: 'Accessibility', desc: { hi: 'labels, alt, keyboard focus', en: 'labels, alt, keyboard focus' } },
+          { title: 'Validation', desc: { hi: 'W3C validator use करें', en: 'Use W3C validator' } }
+        ],
+        code: "<!-- Good HTML -->\n<header>\n  <h1>My Blog</h1>\n  <nav aria-label=\"Primary\">\n    <a href=\"/\">Home</a>\n    <a href=\"/about\">About</a>\n  </nav>\n</header>",
+        qna: [
+          { q: { hi: 'W3C validator क्यों?', en: 'Why use W3C validator?' }, a: { hi: 'HTML errors पकड़ने और standard follow करने के लिए।', en: 'To catch HTML errors and follow standards.' } }
+        ]
+      }
+    };
+
+    // Merge extra content (fills missing) + keep existing json content
+    DATA.topicContent = Object.assign({}, EXTRA_CONTENT, DATA.topicContent);
+
+    function extendData() {
+      // Add more topics before Practice
+      const extraTopics = [
+        {
+          id: 'advanced-html',
+          icon: 'fa-solid fa-layer-group',
+          color: 'violet',
+          title: { hi: '16. Advanced HTML', en: '16. Advanced HTML' },
+          isAccordion: true,
+          subtopics: [
+            { id: 'div-span', title: { hi: 'Div vs Span', en: 'Div vs Span' } },
+            { id: 'id-class', title: { hi: 'id vs class', en: 'id vs class' } },
+            { id: 'input-types', title: { hi: 'Input Types', en: 'Input Types' } },
+            { id: 'form-validation', title: { hi: 'Form Validation', en: 'Form Validation' } },
+            { id: 'accessibility', title: { hi: 'Accessibility (ARIA)', en: 'Accessibility (ARIA)' } },
+            { id: 'seo-basics', title: { hi: 'SEO Basics', en: 'SEO Basics' } },
+            { id: 'best-practices', title: { hi: 'Best Practices', en: 'Best Practices' } }
+          ]
+        },
+        {
+          id: 'canvas',
+          icon: 'fa-solid fa-paintbrush',
+          color: 'teal',
+          title: { hi: '17. Canvas', en: '17. Canvas' },
+          isAccordion: false
+        },
+        {
+          id: 'svg',
+          icon: 'fa-solid fa-draw-polygon',
+          color: 'fuchsia',
+          title: { hi: '18. SVG', en: '18. SVG' },
+          isAccordion: false
+        },
+        {
+          id: 'responsive',
+          icon: 'fa-solid fa-mobile-screen',
+          color: 'sky',
+          title: { hi: '19. Responsive HTML', en: '19. Responsive HTML' },
+          isAccordion: false
+        },
+        {
+          id: 'best-practices',
+          icon: 'fa-solid fa-check-double',
+          color: 'emerald',
+          title: { hi: '20. Best Practices', en: '20. Best Practices' },
+          isAccordion: false
+        }
+      ];
+
+      const insertAt = DATA.topics.findIndex(t => t.id === 'practice');
+      const already = new Set(DATA.topics.map(t => t.id));
+      const toAdd = extraTopics.filter(t => !already.has(t.id));
+      if (toAdd.length) {
+        if (insertAt >= 0) DATA.topics.splice(insertAt, 0, ...toAdd);
+        else DATA.topics.push(...toAdd);
+      }
+
+      // Extra practice sets
+      const psAlready = new Set(DATA.practiceSets.map(p => p.id));
+      const extraPractice = [
+        {
+          id: 6,
+          title: { hi: 'Semantic Layout Page', en: 'Semantic Layout Page' },
+          difficulty: 'Medium',
+          description: { hi: 'header/nav/main/footer use करके एक simple page बनाएं।', en: 'Build a simple page using header/nav/main/footer.' },
+          starterCode: "<!DOCTYPE html>\n<html>\n<body>\n  <!-- semantic layout लिखें -->\n</body>\n</html>",
+          solutionCode: "<!DOCTYPE html>\n<html>\n<body>\n  <header>\n    <h1>My Site</h1>\n    <nav>\n      <a href=\"#home\">Home</a>\n      <a href=\"#about\">About</a>\n    </nav>\n  </header>\n  <main>\n    <section id=\"home\">\n      <h2>Home</h2>\n      <p>Welcome!</p>\n    </section>\n    <section id=\"about\">\n      <h2>About</h2>\n      <p>About content...</p>\n    </section>\n  </main>\n  <footer>\n    <p>&copy; 2026</p>\n  </footer>\n</body>\n</html>",
+          hints: ['header/nav/main/footer tags use करें', 'Sections में headings रखें']
+        },
+        {
+          id: 7,
+          title: { hi: 'Responsive Image Card', en: 'Responsive Image Card' },
+          difficulty: 'Medium',
+          description: { hi: 'एक card बनाएं जिसमें responsive image + title + description हो।', en: 'Build a card with a responsive image + title + description.' },
+          starterCode: "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    /* CSS add करें */\n  </style>\n</head>\n<body>\n  <!-- card बनाएं -->\n</body>\n</html>",
+          solutionCode: "<!DOCTYPE html>\n<html>\n<head>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <style>\n    body{font-family:system-ui; padding:16px;}\n    .card{max-width:520px; border:1px solid #ddd; border-radius:16px; overflow:hidden;}\n    img{max-width:100%; height:auto; display:block;}\n    .p{padding:12px;}\n  </style>\n</head>\n<body>\n  <div class=\"card\">\n    <img src=\"https://via.placeholder.com/900x500\" alt=\"Banner\">\n    <div class=\"p\">\n      <h2>Card Title</h2>\n      <p>Description...</p>\n    </div>\n  </div>\n</body>\n</html>",
+          hints: ['img में max-width:100% use करें', 'overflow:hidden से rounded image']
+        },
+        {
+          id: 8,
+          title: { hi: 'Form Validation', en: 'Form Validation' },
+          difficulty: 'Hard',
+          description: { hi: 'required + pattern + min/max use करके validation वाला form बनाएं।', en: 'Create a form using required + pattern + min/max validations.' },
+          starterCode: "<!DOCTYPE html>\n<html>\n<body>\n  <!-- Validation वाला form लिखें -->\n</body>\n</html>",
+          solutionCode: "<!DOCTYPE html>\n<html>\n<body>\n  <h2>Signup</h2>\n  <form>\n    <label>Username (letters & numbers)</label><br>\n    <input type=\"text\" required minlength=\"3\" maxlength=\"12\" pattern=\"[a-zA-Z0-9]+\"><br><br>\n\n    <label>Age (18-99)</label><br>\n    <input type=\"number\" min=\"18\" max=\"99\" required><br><br>\n\n    <label>Email</label><br>\n    <input type=\"email\" required><br><br>\n\n    <button type=\"submit\">Submit</button>\n  </form>\n</body>\n</html>",
+          hints: ['pattern में regex use करें', 'min/max number पर लगाएं']
+        }
+      ];
+      for (const p of extraPractice) {
+        if (!psAlready.has(p.id)) DATA.practiceSets.push(p);
+      }
+
+      // Extra quiz questions (add 15 more)
+      const qAlready = new Set(DATA.quizQuestions.map(q => q.id));
+      const extraQuiz = [
+        {
+          id: 16,
+          question: { hi: 'HTML में comment लिखने का सही syntax?', en: 'Correct syntax for HTML comment?' },
+          options: ['// comment', '<!-- comment -->', '/* comment */', '<comment>comment</comment>'],
+          correct: 1,
+          explanation: { hi: '<!-- ... --> HTML comments का syntax है।', en: '<!-- ... --> is the syntax for HTML comments.' }
+        },
+        {
+          id: 17,
+          question: { hi: 'कौन सा void (self-closing) tag है?', en: 'Which is a void (self-closing) tag?' },
+          options: ['<p>', '<div>', '<img>', '<section>'],
+          correct: 2,
+          explanation: { hi: '<img> एक void element है।', en: '<img> is a void element.' }
+        },
+        {
+          id: 18,
+          question: { hi: 'Semantic tag कौन सा है?', en: 'Which is a semantic tag?' },
+          options: ['<div>', '<span>', '<article>', '<b>'],
+          correct: 2,
+          explanation: { hi: '<article> semantic element है।', en: '<article> is a semantic element.' }
+        },
+        {
+          id: 19,
+          question: { hi: 'Responsive design के लिए कौन सा meta tag जरूरी है?', en: 'Which meta tag is essential for responsive design?' },
+          options: ['<meta name="robots">', '<meta name="viewport">', '<meta http-equiv="refresh">', '<meta name="author">'],
+          correct: 1,
+          explanation: { hi: 'viewport meta tag mobile scaling के लिए जरूरी है।', en: 'viewport meta tag is required for mobile scaling.' }
+        },
+        {
+          id: 20,
+          question: { hi: 'Input type="email" का benefit?', en: 'Benefit of input type="email"?' },
+          options: ['Bigger text', 'Better mobile keyboard & basic validation', 'Auto submit', 'Hides text'],
+          correct: 1,
+          explanation: { hi: 'Email type से validation और mobile keyboard improve होता है।', en: 'Email type improves validation and mobile keyboard.' }
+        },
+        {
+          id: 21,
+          question: { hi: 'id attribute की property?', en: 'Property of id attribute?' },
+          options: ['Can repeat many times', 'Must be unique on page', 'Only for CSS', 'Only for forms'],
+          correct: 1,
+          explanation: { hi: 'id unique होना चाहिए।', en: 'id must be unique.' }
+        },
+        {
+          id: 22,
+          question: { hi: 'alt attribute का main purpose?', en: 'Main purpose of alt attribute?' },
+          options: ['Image size', 'Accessibility and fallback text', 'Border', 'Download image'],
+          correct: 1,
+          explanation: { hi: 'alt accessibility और fallback text के लिए है।', en: 'alt is for accessibility and fallback text.' }
+        },
+        {
+          id: 23,
+          question: { hi: 'Which attribute makes a form field mandatory?', en: 'Which attribute makes a form field mandatory?' },
+          options: ['checked', 'required', 'selected', 'disabled'],
+          correct: 1,
+          explanation: { hi: 'required field को mandatory बनाता है।', en: 'required makes the field mandatory.' }
+        },
+        {
+          id: 24,
+          question: { hi: 'SVG किस type का graphic है?', en: 'SVG is what type of graphic?' },
+          options: ['Bitmap', 'Vector', 'Audio', 'Database'],
+          correct: 1,
+          explanation: { hi: 'SVG vector graphic है।', en: 'SVG is a vector graphic.' }
+        },
+        {
+          id: 25,
+          question: { hi: 'Canvas content किससे draw होता है?', en: 'Canvas content is drawn using?' },
+          options: ['Only HTML', 'Only CSS', 'JavaScript', 'Only meta tags'],
+          correct: 2,
+          explanation: { hi: 'Canvas पर drawing JavaScript से होती है।', en: 'Canvas drawing is done with JavaScript.' }
+        },
+        {
+          id: 26,
+          question: { hi: 'pattern attribute किसके लिए होता है?', en: 'pattern attribute is used for?' },
+          options: ['Image pattern', 'Regex validation', 'Font selection', 'Table border'],
+          correct: 1,
+          explanation: { hi: 'pattern regex based validation के लिए होता है।', en: 'pattern is for regex-based validation.' }
+        },
+        {
+          id: 27,
+          question: { hi: '<label> tag क्यों use करते हैं?', en: 'Why do we use <label> tag?' },
+          options: ['For styling only', 'For accessibility and better form UX', 'To create table', 'To create links'],
+          correct: 1,
+          explanation: { hi: 'Label accessibility और UX improve करता है।', en: 'Label improves accessibility and UX.' }
+        },
+        {
+          id: 28,
+          question: { hi: 'SEO के लिए सही heading order?', en: 'Correct heading order for SEO?' },
+          options: ['H3 then H1', 'H1 then H2 then H3', 'Only H6', 'No headings needed'],
+          correct: 1,
+          explanation: { hi: 'Logical hierarchy: H1 → H2 → H3।', en: 'Logical hierarchy: H1 → H2 → H3.' }
+        },
+        {
+          id: 29,
+          question: { hi: 'Which is NOT recommended (best practice)?', en: 'Which is NOT recommended (best practice)?' },
+          options: ['Using semantic tags', 'Adding alt text', 'Using multiple identical ids', 'Using labels'],
+          correct: 2,
+          explanation: { hi: 'Duplicate ids गलत है।', en: 'Duplicate ids are wrong.' }
+        },
+        {
+          id: 30,
+          question: { hi: 'Iframe में security के लिए कौन सा attribute helpful है?', en: 'Which attribute helps with iframe security?' },
+          options: ['sandbox', 'style', 'class', 'download'],
+          correct: 0,
+          explanation: { hi: 'sandbox attribute iframe को restrict करता है।', en: 'sandbox restricts iframe capabilities.' }
+        }
+      ];
+      for (const q of extraQuiz) {
+        if (!qAlready.has(q.id)) DATA.quizQuestions.push(q);
+      }
+
+      // Extra exam questions
+      const extraExam = [
+        {
+          q: { hi: 'Accessibility (A11y) क्या है? 5 points लिखें।', en: 'What is Accessibility (A11y)? List 5 points.' },
+          a: {
+            hi: '1. Screen reader friendly content\n2. Keyboard navigation support\n3. Proper labels for form inputs\n4. Images के लिए alt text\n5. Semantic HTML + ARIA (only when needed)',
+            en: '1. Screen reader friendly content\n2. Keyboard navigation support\n3. Proper labels for form inputs\n4. Alt text for images\n5. Semantic HTML + ARIA (only when needed)'
+          }
+        },
+        {
+          q: { hi: 'id और class के बीच 4 differences बताएं।', en: 'Explain 4 differences between id and class.' },
+          a: {
+            hi: '1. id unique, class reusable\n2. CSS selectors: #id, .class\n3. JS: getElementById vs querySelectorAll\n4. Styling के लिए class prefer करें',
+            en: '1. id is unique, class is reusable\n2. CSS selectors: #id, .class\n3. JS: getElementById vs querySelectorAll\n4. Prefer class for styling'
+          }
+        },
+        {
+          q: { hi: 'HTML5 form validation attributes लिखें (examples सहित)।', en: 'List HTML5 form validation attributes with examples.' },
+          a: {
+            hi: 'required, minlength, maxlength, pattern, min, max, step\nExample: <input type="text" required minlength="3" pattern="[a-zA-Z]+">',
+            en: 'required, minlength, maxlength, pattern, min, max, step\nExample: <input type="text" required minlength="3" pattern="[a-zA-Z]+">'
+          }
+        }
+      ];
+      for (const item of extraExam) DATA.examQuestions.push(item);
+    }
+
+    extendData();
+
+    // ---------- App state ----------
+    const STORAGE_KEY = 'html_tutorial_v2_state';
+    const defaultState = {
+      _dataVer: '2.1',
+      lang: 'hi',
+      expanded: {},
+      lastRoute: { page: 'topic', id: 'intro' },
+      practice: { selectedId: 1 },
+      editor: { code: null },
+      editorPrefs: { autoRun: false, wrap: true },
+      quiz: { index: 0, answers: {}, score: 0, completed: false, locked: false },
+      completed: {},
+      notes: {},
+      recent: []
+    };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return structuredClone(defaultState);
+        const st = JSON.parse(raw);
+        const merged = Object.assign(structuredClone(defaultState), st);
+        // If data version changed, reset quiz for consistency
+        if (merged._dataVer !== defaultState._dataVer) {
+          merged.quiz = structuredClone(defaultState.quiz);
+          merged._dataVer = defaultState._dataVer;
+        }
+        return merged;
+      } catch {
+        return structuredClone(defaultState);
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    let state = loadState();
+
+    // Ensure expanded defaults for accordion parents
+    for (const t of DATA.topics) {
+      if (t.isAccordion && state.expanded[t.id] == null) state.expanded[t.id] = (t.id === 'html-basics');
+    }
+
+    // ---------- i18n helpers ----------
+    function tval(maybeObj) {
+      if (maybeObj == null) return '';
+      if (typeof maybeObj === 'string') return maybeObj;
+      const lang = state.lang || 'hi';
+      return maybeObj[lang] ?? maybeObj.en ?? maybeObj.hi ?? Object.values(maybeObj)[0] ?? '';
+    }
+
+    function ui(path) {
+      const parts = path.split('.');
+      let cur = DATA.ui;
+      for (const p of parts) cur = cur?.[p];
+      return tval(cur);
+    }
+
+    // ---------- Progress helpers ----------
+    function isSpecialPage(id) {
+      return ['practice','quiz','editor','exam'].includes(id);
+    }
+
+    function allLearnTopicIds() {
+      const ids = [];
+      for (const t of DATA.topics) {
+        if (isSpecialPage(t.id)) continue;
+        if (t.isAccordion && t.subtopics?.length) {
+          // count subtopics only
+          for (const s of t.subtopics) ids.push(s.id);
+        } else {
+          ids.push(t.id);
+        }
+      }
+      // de-dup
+      return Array.from(new Set(ids));
+    }
+
+    function completionStats() {
+      const ids = allLearnTopicIds();
+      const done = ids.filter(id => !!state.completed[id]).length;
+      const total = ids.length || 1;
+      const pct = Math.round((done / total) * 100);
+      return { done, total, pct };
+    }
+
+    function renderProgress() {
+      const st = completionStats();
+      $('#progressCount').textContent = `${st.pct}% (${st.done}/${st.total})`;
+      $('#progressBar').style.width = `${st.pct}%`;
+      $('#progressCountMobile').textContent = `${st.pct}% (${st.done}/${st.total})`;
+      $('#progressBarMobile').style.width = `${st.pct}%`;
+    }
+
+    // ---------- Routing ----------
+    function setHash(obj) {
+      const sp = new URLSearchParams();
+      for (const [k,v] of Object.entries(obj)) {
+        if (v != null && v !== '') sp.set(k, v);
+      }
+      const newHash = '#' + sp.toString();
+      if (location.hash !== newHash) location.hash = newHash;
+    }
+
+    function parseHash() {
+      const sp = new URLSearchParams(location.hash.replace(/^#/, ''));
+      const page = sp.get('page');
+      if (page) return { page, id: sp.get('id') || null };
+      const id = sp.get('topic') || 'intro';
+      return { page: 'topic', id };
+    }
+
+    function pushRecent(id) {
+      if (!id || isSpecialPage(id)) return;
+      state.recent = (state.recent || []).filter(x => x !== id);
+      state.recent.unshift(id);
+      state.recent = state.recent.slice(0, 8);
+    }
+
+    function routeToTopic(id) {
+      state.lastRoute = { page: 'topic', id };
+      pushRecent(id);
+      saveState();
+      setHash({ topic: id });
+      closeDrawer();
+    }
+
+    function routeToPage(page, id=null) {
+      state.lastRoute = { page, id };
+      saveState();
+      setHash({ page, id });
+      closeDrawer();
+    }
+
+    // ---------- Sidebar rendering ----------
+    function topicMatchesQuery(topic, query) {
+      if (!query) return true;
+      const q = query.toLowerCase();
+      const title = tval(topic.title).toLowerCase();
+      if (title.includes(q)) return true;
+      if (topic.subtopics) {
+        for (const st of topic.subtopics) {
+          const stTitle = tval(st.title).toLowerCase();
+          if (stTitle.includes(q)) return true;
+        }
+      }
+      return false;
+    }
+
+    function isParentCompleted(topic) {
+      if (!topic.isAccordion || !topic.subtopics?.length) return !!state.completed[topic.id];
+      return topic.subtopics.every(s => !!state.completed[s.id]);
+    }
+
+    function renderTopicNav(rootEl, query='') {
+      rootEl.innerHTML = '';
+      const route = parseHash();
+
+      const topics = DATA.topics.filter(t => topicMatchesQuery(t, query));
+      $('#topicCount').textContent = `${topics.length}/${DATA.topics.length}`;
+
+      for (const topic of topics) {
+        const isActiveParent = (route.page === 'topic' && route.id === topic.id) || (topic.subtopics?.some(s => s.id === route.id));
+        const wrapper = document.createElement('div');
+        wrapper.className = 'mb-1';
+
+        const row = document.createElement('div');
+        row.className = `flex items-center gap-2 rounded-xl px-3 py-2 border ${isActiveParent ? 'bg-slate-900/60 border-slate-600/50' : 'bg-slate-950/0 border-transparent hover:bg-slate-900/40 hover:border-slate-700/40'} transition`;
+
+        const badge = document.createElement('span');
+        badge.className = `inline-flex items-center justify-center w-9 h-9 rounded-xl border ${colorClass(topic.color)}`;
+        badge.innerHTML = `<i class="${topic.icon}"></i>`;
+
+        const title = document.createElement('button');
+        title.type = 'button';
+        title.className = 'flex-1 text-left min-w-0';
+        const done = isSpecialPage(topic.id) ? false : isParentCompleted(topic);
+        title.innerHTML = `
+          <div class="flex items-center gap-2 min-w-0">
+            <div class="text-sm font-medium truncate">${escapeHtml(tval(topic.title))}</div>
+            ${done ? '<span class="ml-auto text-emerald-300"><i class="fa-solid fa-circle-check"></i></span>' : ''}
+          </div>
+        `;
+
+        title.addEventListener('click', () => {
+          if (isSpecialPage(topic.id)) routeToPage(topic.id);
+          else routeToTopic(topic.id);
+          if (topic.isAccordion) {
+            state.expanded[topic.id] = true;
+            saveState();
+            renderAllNav();
+          }
+        });
+
+        row.appendChild(badge);
+        row.appendChild(title);
+
+        if (topic.isAccordion) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          const expanded = !!state.expanded[topic.id];
+          btn.className = `w-9 h-9 rounded-xl border border-slate-700/50 bg-slate-900/40 hover:bg-slate-800/50 transition`;
+          btn.innerHTML = `<i class="fa-solid ${expanded ? 'fa-chevron-up' : 'fa-chevron-down'}"></i>`;
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            state.expanded[topic.id] = !state.expanded[topic.id];
+            saveState();
+            renderAllNav();
+          });
+          row.appendChild(btn);
+        }
+
+        wrapper.appendChild(row);
+
+        if (topic.isAccordion && topic.subtopics && state.expanded[topic.id]) {
+          const sub = document.createElement('div');
+          sub.className = 'mt-1 ml-3 pl-3 border-l border-slate-800/70';
+
+          for (const st of topic.subtopics) {
+            const isActive = route.page === 'topic' && route.id === st.id;
+            const isDone = !!state.completed[st.id];
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `w-full text-left px-3 py-2 rounded-xl text-sm border ${isActive ? 'bg-slate-900/60 border-slate-600/50 text-slate-100' : 'bg-transparent border-transparent hover:bg-slate-900/35 hover:border-slate-700/40 text-slate-200/90'} transition`;
+            btn.innerHTML = `<div class="flex items-center gap-2">
+              <span class="truncate">${escapeHtml(tval(st.title))}</span>
+              ${isDone ? '<span class="ml-auto text-emerald-300"><i class="fa-solid fa-check"></i></span>' : ''}
+            </div>`;
+            btn.addEventListener('click', () => routeToTopic(st.id));
+            sub.appendChild(btn);
+          }
+
+          wrapper.appendChild(sub);
+        }
+
+        rootEl.appendChild(wrapper);
+      }
+
+      renderProgress();
+    }
+
+    function renderAllNav() {
+      const qDesktop = $('#topicSearch').value || '';
+      const qMobile = $('#topicSearchMobile').value || '';
+      renderTopicNav($('#topicNav'), qDesktop);
+      renderTopicNav($('#topicNavMobile'), qMobile);
+    }
+
+    // ---------- Syntax highlighting ----------
+    function highlightUnder(el) {
+      try {
+        if (window.Prism?.highlightAllUnder) Prism.highlightAllUnder(el);
+      } catch {}
+    }
+
+    // ---------- Notes modal ----------
+    let notesForTopicId = null;
+
+    function openNotes(topicId) {
+      notesForTopicId = topicId;
+      $('#notesTopicLabel').textContent = `Topic: ${topicId}`;
+      $('#notesTextarea').value = state.notes?.[topicId] || '';
+      $('#notesModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => $('#notesTextarea').focus(), 50);
+    }
+
+    function closeNotes() {
+      $('#notesModal').classList.add('hidden');
+      document.body.style.overflow = '';
+      notesForTopicId = null;
+    }
+
+    // ---------- Content renderers ----------
+    function setHeader(titleText, subtitleText, crumbs) {
+      $('#pageTitle').textContent = titleText;
+      $('#pageSubtitle').textContent = subtitleText || '';
+      $('#breadcrumbs').textContent = crumbs || '';
+    }
+
+    function contentCard(title, innerHtml) {
+      return `
+        <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+          <div class="px-4 py-3 border-b border-slate-800/70 flex items-center gap-2">
+            <div class="font-semibold">${escapeHtml(title)}</div>
+          </div>
+          <div class="p-4">${innerHtml}</div>
+        </section>
+      `;
+    }
+
+    function getParentBreadcrumb(topicId) {
+      const direct = DATA.topics.find(t => t.id === topicId);
+      if (direct) return tval(direct.title);
+      const parent = DATA.topics.find(t => t.subtopics?.some(s => s.id === topicId));
+      if (!parent) return 'Topic';
+      const st = parent.subtopics.find(s => s.id === topicId);
+      return `${tval(parent.title)} › ${tval(st.title)}`;
+    }
+
+    function findPrevNextIds(currentId) {
+      const ids = allLearnTopicIds();
+      const idx = ids.indexOf(currentId);
+      if (idx === -1) return { prev: null, next: null, idx: -1, total: ids.length };
+      return {
+        prev: ids[idx - 1] || null,
+        next: ids[idx + 1] || null,
+        idx,
+        total: ids.length
+      };
+    }
+
+    function renderTopicContent(topicId) {
+      const c = DATA.topicContent[topicId];
+      if (!c) {
+        setHeader('Not Found', 'Content not available', `Topic: ${topicId}`);
+        $('#content').innerHTML = contentCard('Missing content', `<p class="text-slate-300">Content for <code>${escapeHtml(topicId)}</code> is not available.</p>`);
+        return;
+      }
+
+      const crumbs = getParentBreadcrumb(topicId);
+      setHeader(tval(c.title), tval(c.description), crumbs);
+
+      // Header actions
+      const isLearnTopic = !isSpecialPage(topicId);
+      $('#btnMarkDone').classList.toggle('hidden', !isLearnTopic);
+      $('#btnNotes').classList.toggle('hidden', !isLearnTopic);
+
+      $('#btnMarkDone').onclick = () => {
+        state.completed[topicId] = !state.completed[topicId];
+        saveState();
+        renderAllNav();
+        renderRoute();
+        showToast(state.completed[topicId] ? 'Marked as done' : 'Marked as not done');
+      };
+      $('#btnNotes').onclick = () => openNotes(topicId);
+
+      const pn = findPrevNextIds(topicId);
+      const navControls = `
+        <div class="mt-4 flex flex-wrap items-center gap-2">
+          <button ${!pn.prev ? 'disabled' : ''} data-nav="prev" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 disabled:opacity-40 text-sm">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Prev
+          </button>
+          <button ${!pn.next ? 'disabled' : ''} data-nav="next" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 disabled:opacity-40 text-sm">
+            Next<i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+          <div class="ml-auto text-xs text-slate-400">${pn.idx >= 0 ? `Topic ${pn.idx + 1}/${pn.total}` : ''}</div>
+        </div>
+      `;
+
+      const parts = [];
+      parts.push(`
+        <div class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+          <div class="flex items-center gap-2">
+            <div class="font-semibold">${escapeHtml(state.completed[topicId] ? 'Completed' : 'Not completed')}</div>
+            <div class="ml-auto text-xs text-slate-400">${escapeHtml(tval({hi:'Mark done + save notes', en:'Mark done + save notes'}))}</div>
+          </div>
+          ${navControls}
+        </div>
+      `);
+
+      parts.push(`
+        <div class="prose-lite">
+          <p>${escapeHtml(tval(c.description))}</p>
+        </div>
+      `);
+
+      if (c.keyPoints?.length) {
+        const kp = c.keyPoints.map(k => `
+          <div class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <div class="font-semibold">${escapeHtml(k.title)}</div>
+            <div class="mt-2 text-sm text-slate-300">${escapeHtml(tval(k.desc))}</div>
+          </div>
+        `).join('');
+        parts.push(`<div class="mt-4 grid sm:grid-cols-3 gap-3">${kp}</div>`);
+      }
+
+      if (c.timeline?.length) {
+        const items = c.timeline.map((it) => `
+          <div class="flex gap-3">
+            <div class="w-16 shrink-0 text-sm font-semibold text-slate-200">${escapeHtml(it.year)}</div>
+            <div class="flex-1 rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft px-4 py-3 text-sm text-slate-200">${escapeHtml(tval(it.event))}</div>
+          </div>
+        `).join('');
+        parts.push(`<div class="mt-6">${contentCard('Timeline', `<div class="space-y-3">${items}</div>`)}</div>`);
+      }
+
+      if (c.versions?.length) {
+        const rows = c.versions.map(v => `
+          <tr class="border-b border-slate-800/70">
+            <td class="py-2 pr-2 font-semibold">${escapeHtml(v.name)}</td>
+            <td class="py-2 pr-2 text-slate-300">${escapeHtml(v.year)}</td>
+            <td class="py-2 text-slate-300">${escapeHtml(tval(v.features))}</td>
+          </tr>
+        `).join('');
+        parts.push(`<div class="mt-6">${contentCard('Versions', `
+          <div class="overflow-auto scrollbar-thin">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="text-left text-slate-300 border-b border-slate-800/70">
+                  <th class="py-2 pr-2">Version</th>
+                  <th class="py-2 pr-2">Year</th>
+                  <th class="py-2">Features</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        `)}</div>`);
+      }
+
+      if (c.code) {
+        const code = String(c.code);
+        const id = `code_${Math.random().toString(16).slice(2)}`;
+        const card = `
+          <div class="flex items-center gap-2">
+            <div class="text-xs text-slate-400">${escapeHtml(ui('labels.codeExample'))}</div>
+            <div class="ml-auto flex items-center gap-2">
+              <button data-copy="${id}" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                <i class="fa-regular fa-copy mr-2"></i>${escapeHtml(ui('buttons.copy'))}
+              </button>
+              <button data-openin="${id}" class="px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15 text-sm">
+                <i class="fa-solid fa-play mr-2"></i>${escapeHtml(ui('buttons.run'))}
+              </button>
+            </div>
+          </div>
+          <pre class="mt-3 scrollbar-thin"><code id="${id}" class="language-markup block p-4 text-sm leading-6">${escapeHtml(code)}</code></pre>
+          <div class="mt-3 text-xs text-slate-400">Tip: <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> runs code in Editor.</div>
+        `;
+        parts.push(`<div class="mt-6">${contentCard(ui('labels.codeExample'), card)}</div>`);
+      }
+
+      if (c.qna?.length) {
+        const qnaHtml = c.qna.map((item) => `
+          <details class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <summary class="cursor-pointer font-semibold">${escapeHtml(tval(item.q))}</summary>
+            <div class="mt-2 text-sm text-slate-300 whitespace-pre-line">${escapeHtml(tval(item.a))}</div>
+          </details>
+        `).join('');
+        parts.push(`<div class="mt-6">${contentCard(ui('labels.qnaSection'), `<div class="space-y-3">${qnaHtml}</div>`)}</div>`);
+      }
+
+      // Notes preview card
+      const note = state.notes?.[topicId];
+      if (note && String(note).trim()) {
+        parts.push(`<div class="mt-6">${contentCard('Your Notes', `<pre class="whitespace-pre-wrap text-sm text-slate-200">${escapeHtml(note)}</pre><div class="mt-3"><button id="btnEditNotesInline" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm"><i class="fa-solid fa-pen mr-2"></i>Edit Notes</button></div>`)}</div>`);
+      }
+
+      $('#content').innerHTML = parts.join('');
+
+      // Prev/Next
+      $$('[data-nav]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = btn.getAttribute('data-nav');
+          const pn2 = findPrevNextIds(topicId);
+          if (dir === 'prev' && pn2.prev) routeToTopic(pn2.prev);
+          if (dir === 'next' && pn2.next) routeToTopic(pn2.next);
+        });
+      });
+
+      const editNotesBtn = $('#btnEditNotesInline');
+      if (editNotesBtn) editNotesBtn.addEventListener('click', () => openNotes(topicId));
+
+      // Wire code actions
+      $$('[data-copy]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-copy');
+          const text = $('#' + CSS.escape(id)).textContent;
+          copyText(text);
+        });
+      });
+
+      $$('[data-openin]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-openin');
+          const text = $('#' + CSS.escape(id)).textContent;
+          state.editor.code = text;
+          saveState();
+          routeToPage('editor');
+        });
+      });
+
+      // Highlight
+      highlightUnder($('#content'));
+
+      // Update done button label
+      $('#btnMarkDone').innerHTML = state.completed[topicId]
+        ? `<i class="fa-solid fa-circle-check"></i><span class="text-sm">Done</span>`
+        : `<i class="fa-regular fa-circle"></i><span class="text-sm">Mark Done</span>`;
+
+      renderProgress();
+    }
+
+    function difficultyPill(diff) {
+      const d = String(diff || '').toLowerCase();
+      const map = {
+        easy: 'bg-emerald-500/10 text-emerald-200 border-emerald-400/20',
+        medium: 'bg-amber-500/10 text-amber-200 border-amber-400/20',
+        hard: 'bg-rose-500/10 text-rose-200 border-rose-400/20'
+      };
+      return map[d] || 'bg-slate-500/10 text-slate-200 border-slate-400/20';
+    }
+
+    function makeCodeMirror(textarea, initialValue, onRun) {
+      try {
+        if (!window.CodeMirror) return null;
+        const cm = CodeMirror.fromTextArea(textarea, {
+          mode: 'htmlmixed',
+          theme: 'material-darker',
+          lineNumbers: true,
+          lineWrapping: !!state.editorPrefs?.wrap,
+          styleActiveLine: true,
+          matchBrackets: true,
+          autoCloseBrackets: true,
+          autoCloseTags: true,
+          tabSize: 2,
+          indentUnit: 2,
+          indentWithTabs: false,
+          extraKeys: {
+            'Ctrl-Enter': onRun,
+            'Cmd-Enter': onRun,
+            'Ctrl-/': cm => cm.execCommand('toggleComment')
+          }
+        });
+        cm.setValue(initialValue || '');
+        setTimeout(() => cm.refresh(), 0);
+        return cm;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function downloadText(filename, text) {
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+
+    function renderEditorPage({ title, subtitle, initialCode, allowTemplates=false } = {}) {
+      setHeader(title || tval({hi:'🔥 Try it Yourself', en:'🔥 Try it Yourself'}), subtitle || tval({hi:'HTML code लिखिए और output देखिए।', en:'Write HTML and see output instantly.'}), 'Editor');
+
+      const code = initialCode ?? state.editor.code ?? `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Try HTML</title>\n  <style>\n    body{font-family:system-ui; padding:16px;}\n    .box{padding:12px; border:1px solid #ddd; border-radius:12px;}\n  </style>\n</head>\n<body>\n  <h1>Hello!</h1>\n  <p>Edit this code and press Run.</p>\n  <div class="box">This is a box</div>\n  <script>\n    console.log('Hello from output');\n  <\/script>\n</body>\n</html>`;
+
+      const templates = [
+        { id: 'blank', name: {hi:'Blank', en:'Blank'}, code: '' },
+        { id: 'basic', name: {hi:'Basic HTML', en:'Basic HTML'}, code: `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Basic</title>\n</head>\n<body>\n  <h1>Heading</h1>\n  <p>Paragraph</p>\n</body>\n</html>` },
+        { id: 'table', name: {hi:'Table Demo', en:'Table Demo'}, code: `<!DOCTYPE html>\n<html>\n<body>\n  <h2>Table</h2>\n  <table border="1" cellpadding="8">\n    <tr><th>Name</th><th>Age</th></tr>\n    <tr><td>Sudhir</td><td>25</td></tr>\n    <tr><td>Priya</td><td>24</td></tr>\n  </table>\n</body>\n</html>` },
+        { id: 'form', name: {hi:'Form Demo', en:'Form Demo'}, code: `<!DOCTYPE html>\n<html>\n<body>\n  <h2>Form</h2>\n  <form>\n    <label>Name:</label><br>\n    <input type="text" required><br><br>\n    <label>Email:</label><br>\n    <input type="email"><br><br>\n    <button type="submit">Submit</button>\n  </form>\n</body>\n</html>` },
+        { id: 'canvas', name: {hi:'Canvas Demo', en:'Canvas Demo'}, code: `<!DOCTYPE html>\n<html>\n<body>\n  <canvas id="c" width="300" height="160" style="border:1px solid #999"></canvas>\n  <script>\n    const ctx = document.getElementById('c').getContext('2d');\n    ctx.fillStyle = '#22c55e';\n    ctx.fillRect(20, 20, 120, 80);\n    ctx.fillStyle = '#60a5fa';\n    ctx.font = '18px sans-serif';\n    ctx.fillText('Canvas!', 170, 70);\n  <\/script>\n</body>\n</html>` }
+      ];
+
+      const templateOptions = templates.map(t => `<option value="${t.id}">${escapeHtml(tval(t.name))}</option>`).join('');
+
+      $('#content').innerHTML = `
+        <div class="grid lg:grid-cols-2 gap-4">
+          <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+            <div class="px-4 py-3 border-b border-slate-800/70 flex flex-wrap items-center gap-2">
+              <div class="font-semibold">Editor</div>
+              <div class="ml-auto flex flex-wrap items-center gap-2">
+                ${allowTemplates ? `
+                  <select id="editorTemplate" class="text-sm bg-slate-900/60 ring-soft border border-slate-700/70 rounded-xl px-3 py-2">
+                    ${templateOptions}
+                  </select>
+                ` : ''}
+
+                <label class="inline-flex items-center gap-2 text-xs text-slate-300 px-3 py-2 rounded-xl bg-slate-900/40 ring-soft border border-slate-700/60">
+                  <input id="editorAutoRun" type="checkbox" class="accent-emerald-500" />
+                  Auto Run
+                </label>
+
+                <button id="btnEditorRun" class="px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15 text-sm">
+                  <i class="fa-solid fa-play mr-2"></i>${escapeHtml(ui('buttons.run'))}
+                </button>
+                <button id="btnEditorCopy" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                  <i class="fa-regular fa-copy mr-2"></i>${escapeHtml(ui('buttons.copy'))}
+                </button>
+                <button id="btnEditorDownload" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                  <i class="fa-solid fa-download mr-2"></i>Download
+                </button>
+                <button id="btnEditorReset" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                  <i class="fa-solid fa-rotate-left mr-2"></i>${escapeHtml(ui('buttons.reset'))}
+                </button>
+              </div>
+            </div>
+            <div class="p-3">
+              <textarea id="editorTextarea" spellcheck="false"></textarea>
+              <div class="mt-2 text-xs text-slate-400">Shortcuts: <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> Run • <span class="kbd">Ctrl</span> + <span class="kbd">/</span> Comment</div>
+            </div>
+          </section>
+
+          <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+            <div class="px-4 py-3 border-b border-slate-800/70 flex items-center gap-2">
+              <div class="font-semibold">${escapeHtml(ui('labels.output'))}</div>
+              <div class="ml-auto text-xs text-slate-400">Sandboxed iframe</div>
+            </div>
+            <div class="p-3">
+              <iframe id="editorIframe" class="w-full h-[380px] lg:h-[520px] rounded-2xl bg-white" sandbox="allow-scripts allow-forms allow-modals" referrerpolicy="no-referrer"></iframe>
+            </div>
+          </section>
+        </div>
+      `;
+
+      const ta = $('#editorTextarea');
+      const iframe = $('#editorIframe');
+
+      const run = () => {
+        const v = cm ? cm.getValue() : ta.value;
+        state.editor.code = v;
+        saveState();
+        iframe.srcdoc = v;
+      };
+
+      const cm = makeCodeMirror(ta, code, run);
+      if (!cm) ta.value = code;
+
+      function reset() {
+        if (cm) cm.setValue(code);
+        else ta.value = code;
+        run();
+      }
+
+      $('#editorAutoRun').checked = !!state.editorPrefs.autoRun;
+
+      const debouncedRun = debounce(run, 500);
+      if (cm) {
+        cm.on('change', () => { if ($('#editorAutoRun').checked) debouncedRun(); });
+      } else {
+        ta.addEventListener('input', () => { if ($('#editorAutoRun').checked) debouncedRun(); });
+      }
+
+      $('#editorAutoRun').addEventListener('change', (e) => {
+        state.editorPrefs.autoRun = e.target.checked;
+        saveState();
+      });
+
+      $('#btnEditorRun').addEventListener('click', run);
+      $('#btnEditorCopy').addEventListener('click', () => copyText(cm ? cm.getValue() : ta.value));
+      $('#btnEditorDownload').addEventListener('click', () => downloadText('index.html', cm ? cm.getValue() : ta.value));
+      $('#btnEditorReset').addEventListener('click', reset);
+
+      if (allowTemplates) {
+        $('#editorTemplate').addEventListener('change', (e) => {
+          const tid = e.target.value;
+          const tpl = templates.find(x => x.id === tid);
+          if (tpl) {
+            if (cm) cm.setValue(tpl.code);
+            else ta.value = tpl.code;
+            run();
+          }
+        });
+      }
+
+      run();
+    }
+
+    function renderPracticePage() {
+      setHeader(ui('labels.practiceSets'), tval({hi:'Practice करके HTML strong बनाइए।', en:'Strengthen HTML by practicing.'}), 'Practice');
+
+      $('#btnMarkDone').classList.add('hidden');
+      $('#btnNotes').classList.add('hidden');
+
+      const selectedId = state.practice.selectedId ?? DATA.practiceSets[0]?.id;
+      const selected = DATA.practiceSets.find(p => p.id === selectedId) || DATA.practiceSets[0];
+
+      const listCards = DATA.practiceSets.map(p => {
+        const active = selected?.id === p.id;
+        return `
+          <button data-practice-id="${p.id}" class="text-left w-full rounded-2xl border ${active ? 'border-sky-500/40 bg-sky-500/10' : 'border-slate-800/70 bg-slate-950/30 hover:bg-slate-900/35'} ring-soft p-4 transition">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-2xl border ${difficultyPill(p.difficulty)} ring-soft flex items-center justify-center">
+                <i class="fa-solid fa-dumbbell"></i>
+              </div>
+              <div class="min-w-0">
+                <div class="font-semibold truncate">${escapeHtml(tval(p.title))}</div>
+                <div class="mt-1 text-xs text-slate-400">${escapeHtml(ui('labels.difficulty'))}: <span class="px-2 py-0.5 rounded-full border ${difficultyPill(p.difficulty)}">${escapeHtml(p.difficulty)}</span></div>
+                <div class="mt-2 text-sm text-slate-300 line-clamp-2">${escapeHtml(tval(p.description))}</div>
+              </div>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      const hints = (selected?.hints || []).map((h) => `<li class="text-sm text-slate-300">${escapeHtml(h)}</li>`).join('');
+
+      $('#content').innerHTML = `
+        <div class="grid lg:grid-cols-[420px_1fr] gap-4">
+          <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden hidden lg:block">
+            <div class="px-4 py-3 border-b border-slate-800/70">
+              <div class="font-semibold">${escapeHtml(ui('labels.practiceSets'))}</div>
+              <div class="mt-1 text-xs text-slate-400">Tip: On mobile, use the dropdown in the right panel.</div>
+            </div>
+            <div class="p-3 space-y-3 overflow-auto max-h-[calc(var(--vh,1vh)*100-320px)] scrollbar-thin">${listCards}</div>
+          </section>
+
+          <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+            <div class="px-4 py-3 border-b border-slate-800/70">
+              <div class="flex flex-wrap items-start gap-3">
+                <div class="min-w-0 flex-1">
+                  <div class="text-xs text-slate-400">Practice #${selected?.id}</div>
+                  <div class="font-semibold text-lg">${escapeHtml(tval(selected?.title))}</div>
+                  <div class="mt-1 text-sm text-slate-300">${escapeHtml(tval(selected?.description))}</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <select id="practiceSelectMobile" class="lg:hidden text-sm bg-slate-900/60 ring-soft border border-slate-700/70 rounded-xl px-3 py-2">
+                    ${DATA.practiceSets.map(p => `<option value="${p.id}" ${p.id===selected?.id?'selected':''}>#${p.id} ${escapeHtml(tval(p.title))}</option>`).join('')}
+                  </select>
+                  <span class="px-2 py-1 rounded-full border ${difficultyPill(selected?.difficulty)} text-xs">${escapeHtml(selected?.difficulty || '')}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4">
+              <div class="grid xl:grid-cols-2 gap-4">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <div class="font-semibold">Editor</div>
+                    <div class="ml-auto flex flex-wrap items-center gap-2">
+                      <label class="inline-flex items-center gap-2 text-xs text-slate-300 px-3 py-2 rounded-xl bg-slate-900/40 ring-soft border border-slate-700/60">
+                        <input id="practiceAutoRun" type="checkbox" class="accent-emerald-500" />
+                        Auto Run
+                      </label>
+                      <button id="btnPracticeRun" class="px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15 text-sm">
+                        <i class="fa-solid fa-play mr-2"></i>${escapeHtml(ui('buttons.run'))}
+                      </button>
+                      <button id="btnPracticeCopy" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                        <i class="fa-regular fa-copy mr-2"></i>${escapeHtml(ui('buttons.copy'))}
+                      </button>
+                      <button id="btnPracticeReset" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                        <i class="fa-solid fa-rotate-left mr-2"></i>${escapeHtml(ui('buttons.reset'))}
+                      </button>
+                    </div>
+                  </div>
+
+                  <textarea id="practiceTextarea" spellcheck="false"></textarea>
+
+                  <div class="mt-4 flex flex-wrap items-center gap-2">
+                    <button id="btnToggleSolution" class="px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                      <i class="fa-solid fa-eye mr-2"></i>${escapeHtml(ui('buttons.showSolution'))}
+                    </button>
+                    <button id="btnLoadToEditor" class="px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15 text-sm">
+                      <i class="fa-solid fa-bolt mr-2"></i>Open in Full Editor
+                    </button>
+                  </div>
+
+                  <div id="solutionWrap" class="mt-4 hidden">
+                    <div class="flex items-center gap-2">
+                      <div class="font-semibold">Solution</div>
+                      <button id="btnCopySolution" class="ml-auto px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                        <i class="fa-regular fa-copy mr-2"></i>${escapeHtml(ui('buttons.copy'))}
+                      </button>
+                    </div>
+                    <pre class="mt-3 scrollbar-thin"><code id="solutionCode" class="language-markup block p-4 text-sm leading-6"></code></pre>
+                  </div>
+
+                  <div class="mt-5">
+                    <div class="font-semibold">Hints</div>
+                    <ul class="mt-2 list-disc pl-5 space-y-1">${hints || '<li class="text-sm text-slate-400">No hints</li>'}</ul>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex items-center gap-2">
+                    <div class="font-semibold">${escapeHtml(ui('labels.output'))}</div>
+                    <div class="ml-auto text-xs text-slate-400">Sandboxed iframe</div>
+                  </div>
+                  <iframe id="practiceIframe" class="mt-3 w-full h-[360px] xl:h-[520px] rounded-2xl bg-white" sandbox="allow-scripts allow-forms allow-modals" referrerpolicy="no-referrer"></iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+
+      // bind list
+      $$('[data-practice-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.practice.selectedId = Number(btn.getAttribute('data-practice-id'));
+          saveState();
+          renderPracticePage();
+        });
+      });
+
+      $('#practiceSelectMobile').addEventListener('change', (e) => {
+        state.practice.selectedId = Number(e.target.value);
+        saveState();
+        renderPracticePage();
+      });
+
+      const ta = $('#practiceTextarea');
+      const iframe = $('#practiceIframe');
+      const starter = selected?.starterCode || '';
+      const solution = selected?.solutionCode || '';
+
+      $('#solutionCode').textContent = solution;
+      highlightUnder($('#content'));
+
+      const run = () => {
+        const v = cm ? cm.getValue() : ta.value;
+        iframe.srcdoc = v;
+      };
+
+      const cm = makeCodeMirror(ta, starter, run);
+      if (!cm) ta.value = starter;
+
+      // Auto run
+      $('#practiceAutoRun').checked = true;
+      const debouncedRun = debounce(run, 450);
+      if (cm) cm.on('change', () => { if ($('#practiceAutoRun').checked) debouncedRun(); });
+      else ta.addEventListener('input', () => { if ($('#practiceAutoRun').checked) debouncedRun(); });
+
+      $('#btnPracticeRun').addEventListener('click', run);
+      $('#btnPracticeCopy').addEventListener('click', () => copyText(cm ? cm.getValue() : ta.value));
+      $('#btnPracticeReset').addEventListener('click', () => {
+        if (cm) cm.setValue(starter);
+        else ta.value = starter;
+        run();
+      });
+
+      let solOpen = false;
+      const updateSolBtn = () => {
+        $('#btnToggleSolution').innerHTML = solOpen
+          ? `<i class="fa-solid fa-eye-slash mr-2"></i>${escapeHtml(ui('buttons.hideSolution'))}`
+          : `<i class="fa-solid fa-eye mr-2"></i>${escapeHtml(ui('buttons.showSolution'))}`;
+        $('#solutionWrap').classList.toggle('hidden', !solOpen);
+      };
+      updateSolBtn();
+
+      $('#btnToggleSolution').addEventListener('click', () => {
+        solOpen = !solOpen;
+        updateSolBtn();
+        highlightUnder($('#content'));
+      });
+
+      $('#btnCopySolution').addEventListener('click', () => copyText(solution));
+
+      $('#btnLoadToEditor').addEventListener('click', () => {
+        state.editor.code = cm ? cm.getValue() : ta.value;
+        saveState();
+        routeToPage('editor');
+      });
+
+      run();
+    }
+
+    function renderQuizPage() {
+      $('#btnMarkDone').classList.add('hidden');
+      $('#btnNotes').classList.add('hidden');
+
+      const total = DATA.quizQuestions.length;
+      const qIndex = Math.max(0, Math.min(state.quiz.index || 0, total - 1));
+      state.quiz.index = qIndex;
+
+      if (state.quiz.completed) {
+        setHeader(ui('labels.quizComplete'), `${ui('labels.yourScore')}: ${state.quiz.score}/${total}`, 'Quiz');
+        $('#content').innerHTML = `
+          <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+            <div class="p-6">
+              <div class="text-4xl font-bold">${escapeHtml(state.quiz.score)}/${escapeHtml(total)}</div>
+              <div class="mt-2 text-slate-300">${escapeHtml(tval({hi:'आपने quiz complete कर लिया!', en:'You have completed the quiz!'}))}</div>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <button id="btnQuizRestart" class="px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15">
+                  <i class="fa-solid fa-rotate-left mr-2"></i>${escapeHtml(ui('buttons.tryAgain'))}
+                </button>
+                <button id="btnQuizReview" class="px-4 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50">
+                  <i class="fa-solid fa-list-check mr-2"></i>${escapeHtml(tval({hi:'Review Answers', en:'Review Answers'}))}
+                </button>
+                <button id="btnQuizShareScore" class="ml-auto px-4 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50">
+                  <i class="fa-solid fa-share-nodes mr-2"></i>Share
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <div id="quizReview" class="mt-4 hidden"></div>
+        `;
+
+        $('#btnQuizRestart').addEventListener('click', () => {
+          state.quiz = structuredClone(defaultState.quiz);
+          saveState();
+          renderQuizPage();
+        });
+
+        $('#btnQuizReview').addEventListener('click', () => {
+          const wrap = $('#quizReview');
+          wrap.classList.toggle('hidden');
+          if (!wrap.classList.contains('hidden')) {
+            wrap.innerHTML = buildQuizReview();
+          }
+        });
+
+        $('#btnQuizShareScore').addEventListener('click', () => {
+          const text = `My score: ${state.quiz.score}/${total} in HTML Quiz!`;
+          copyText(text);
+        });
+
+        return;
+      }
+
+      const q = DATA.quizQuestions[qIndex];
+      const selected = state.quiz.answers[q.id];
+
+      const progressPct = Math.round(((qIndex) / total) * 100);
+      setHeader(ui('labels.question') + ` ${qIndex+1}/${total}`, tval(q.question), 'Quiz');
+
+      const optionsHtml = q.options.map((opt, i) => {
+        const picked = selected === i;
+        const locked = !!state.quiz.locked;
+        let cls = picked ? 'border-sky-500/40 bg-sky-500/10' : 'border-slate-800/70 bg-slate-950/30 hover:bg-slate-900/35';
+        if (locked) {
+          if (i === q.correct) cls = 'border-emerald-500/45 bg-emerald-500/10';
+          if (picked && i !== q.correct) cls = 'border-rose-500/45 bg-rose-500/10';
+        }
+        return `
+          <button data-opt="${i}" ${locked ? 'disabled' : ''} class="w-full text-left rounded-2xl border ${cls} ring-soft p-4 transition disabled:opacity-80">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl border border-slate-700/60 bg-slate-900/50 ring-soft flex items-center justify-center font-bold">${String.fromCharCode(65+i)}</div>
+              <div class="text-sm text-slate-100">${escapeHtml(opt)}</div>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      $('#content').innerHTML = `
+        <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+          <div class="px-4 py-3 border-b border-slate-800/70">
+            <div class="flex flex-wrap items-center gap-2">
+              <div class="text-xs text-slate-400">${escapeHtml(ui('labels.score'))}: <span class="text-slate-200 font-semibold">${escapeHtml(String(state.quiz.score || 0))}</span></div>
+              <div class="ml-auto flex items-center gap-2">
+                <select id="quizJump" class="text-xs bg-slate-900/60 ring-soft border border-slate-700/70 rounded-xl px-3 py-2">
+                  ${DATA.quizQuestions.map((qq, idx) => `<option value="${idx}" ${idx===qIndex?'selected':''}>Q${idx+1}</option>`).join('')}
+                </select>
+                <div class="w-44 sm:w-64 h-2 rounded-full bg-slate-900/60 ring-soft overflow-hidden">
+                  <div class="h-full bg-sky-500/60" style="width:${progressPct}%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 sm:p-6">
+            <div class="text-sm text-slate-400">${escapeHtml(tval({hi:'एक option चुनें और Submit करें।', en:'Pick an option and press Submit.'}))}</div>
+            <div class="mt-4 space-y-3">${optionsHtml}</div>
+
+            <div id="quizFeedback" class="mt-4"></div>
+
+            <div class="mt-6 flex flex-wrap items-center gap-2">
+              <button id="btnQuizPrev" class="px-4 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 disabled:opacity-40" ${qIndex===0 ? 'disabled' : ''}>
+                <i class="fa-solid fa-arrow-left mr-2"></i>${escapeHtml(ui('buttons.prevQuestion'))}
+              </button>
+              <button id="btnQuizSubmit" class="px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15 disabled:opacity-40" ${selected==null || state.quiz.locked ? 'disabled' : ''}>
+                <i class="fa-solid fa-check mr-2"></i>${escapeHtml(ui('buttons.submit'))}
+              </button>
+              <button id="btnQuizNext" class="ml-auto px-4 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50">
+                ${escapeHtml(ui('buttons.nextQuestion'))}<i class="fa-solid fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+
+            <div class="mt-3 text-xs text-slate-400">Tip: Submit to see explanation. Jump from dropdown.</div>
+          </div>
+        </section>
+      `;
+
+      $('#quizJump').addEventListener('change', (e) => {
+        state.quiz.index = Number(e.target.value);
+        state.quiz.locked = false;
+        saveState();
+        renderQuizPage();
+      });
+
+      $$('[data-opt]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = Number(btn.getAttribute('data-opt'));
+          state.quiz.answers[q.id] = i;
+          state.quiz.locked = false;
+          saveState();
+          renderQuizPage();
+        });
+      });
+
+      function showFeedback(correct) {
+        const boxClass = correct ? 'border-emerald-500/45 bg-emerald-500/10' : 'border-rose-500/45 bg-rose-500/10';
+        const label = correct ? ui('labels.correct') : ui('labels.incorrect');
+        $('#quizFeedback').innerHTML = `
+          <div class="rounded-2xl border ${boxClass} ring-soft p-4">
+            <div class="font-semibold">${escapeHtml(label)}</div>
+            <div class="mt-2 text-sm text-slate-200 whitespace-pre-line">${escapeHtml(tval(q.explanation))}</div>
+          </div>
+        `;
+      }
+
+      $('#btnQuizPrev').addEventListener('click', () => {
+        state.quiz.index = Math.max(0, qIndex - 1);
+        state.quiz.locked = false;
+        saveState();
+        renderQuizPage();
+      });
+
+      $('#btnQuizNext').addEventListener('click', () => {
+        if (qIndex === total - 1) {
+          if (!state.quiz.locked) {
+            showToast(tval({hi:'पहले Submit करें', en:'Please submit first'}));
+            return;
+          }
+          state.quiz.completed = true;
+          saveState();
+          renderQuizPage();
+          return;
+        }
+        state.quiz.index = Math.min(total - 1, qIndex + 1);
+        state.quiz.locked = false;
+        saveState();
+        renderQuizPage();
+      });
+
+      $('#btnQuizSubmit').addEventListener('click', () => {
+        const ans = state.quiz.answers[q.id];
+        if (ans == null) return;
+        const correct = ans === q.correct;
+
+        if (!state.quiz._scored) state.quiz._scored = {};
+        if (!state.quiz._scored[q.id]) {
+          if (correct) state.quiz.score = (state.quiz.score || 0) + 1;
+          state.quiz._scored[q.id] = true;
+        }
+
+        state.quiz.locked = true;
+        saveState();
+        renderQuizPage();
+        showFeedback(correct);
+      });
+
+      if (state.quiz.locked) {
+        showFeedback((state.quiz.answers[q.id] === q.correct));
+      }
+    }
+
+    function buildQuizReview() {
+      const items = DATA.quizQuestions.map((q, idx) => {
+        const ans = state.quiz.answers[q.id];
+        const isCorrect = ans === q.correct;
+        const pill = isCorrect ? 'border-emerald-500/45 bg-emerald-500/10 text-emerald-200' : 'border-rose-500/45 bg-rose-500/10 text-rose-200';
+        return `
+          <details class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <summary class="cursor-pointer">
+              <div class="flex items-center gap-2">
+                <div class="font-semibold">${escapeHtml(ui('labels.question'))} ${idx+1}</div>
+                <span class="px-2 py-0.5 rounded-full border ${pill} text-xs">${isCorrect ? 'Correct' : 'Incorrect'}</span>
+              </div>
+              <div class="mt-1 text-sm text-slate-300">${escapeHtml(tval(q.question))}</div>
+            </summary>
+            <div class="mt-3 text-sm">
+              <div class="text-slate-300">Your answer: <span class="font-semibold text-slate-100">${ans == null ? '-' : escapeHtml(q.options[ans])}</span></div>
+              <div class="mt-1 text-slate-300">Correct answer: <span class="font-semibold text-slate-100">${escapeHtml(q.options[q.correct])}</span></div>
+              <div class="mt-3 text-slate-300 whitespace-pre-line">${escapeHtml(tval(q.explanation))}</div>
+            </div>
+          </details>
+        `;
+      }).join('');
+      return `
+        <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+          <div class="px-4 py-3 border-b border-slate-800/70 font-semibold">Review</div>
+          <div class="p-4 space-y-3">${items}</div>
+        </section>
+      `;
+    }
+
+    function renderExamPage() {
+      $('#btnMarkDone').classList.add('hidden');
+      $('#btnNotes').classList.add('hidden');
+
+      setHeader(ui('labels.examQuestions'), tval({hi:'Interview/Exam में पूछे जाने वाले सवाल।', en:'Common exam/interview questions.'}), 'Exam');
+
+      const items = DATA.examQuestions.map((item, idx) => `
+        <details class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+          <summary class="cursor-pointer">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-violet-500/10 text-violet-200 border border-violet-400/20 ring-soft flex items-center justify-center font-bold">${idx+1}</div>
+              <div class="min-w-0">
+                <div class="font-semibold">${escapeHtml(tval(item.q))}</div>
+                <div class="mt-1 text-xs text-slate-400">${escapeHtml(tval({hi:'Answer देखने के लिए expand करें', en:'Expand to view answer'}))}</div>
+              </div>
+            </div>
+          </summary>
+          <div class="mt-3">
+            <div class="flex items-center gap-2">
+              <div class="text-sm font-semibold">Answer</div>
+              <button data-copy-exam="${idx}" class="ml-auto px-3 py-2 rounded-xl bg-slate-900/50 ring-soft border border-slate-700/60 hover:bg-slate-800/50 text-sm">
+                <i class="fa-regular fa-copy mr-2"></i>${escapeHtml(ui('buttons.copy'))}
+              </button>
+            </div>
+            <pre class="mt-3 scrollbar-thin"><code id="exam_${idx}" class="language-markup block p-4 text-sm leading-6 whitespace-pre-line">${escapeHtml(tval(item.a))}</code></pre>
+          </div>
+        </details>
+      `).join('');
+
+      $('#content').innerHTML = `
+        <section class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft overflow-hidden">
+          <div class="px-4 py-3 border-b border-slate-800/70">
+            <div class="flex items-center gap-2">
+              <div class="font-semibold">${escapeHtml(ui('labels.examQuestions'))}</div>
+              <div class="ml-auto text-xs text-slate-400">${DATA.examQuestions.length} items</div>
+            </div>
+          </div>
+          <div class="p-4 space-y-3">${items}</div>
+        </section>
+      `;
+
+      $$('[data-copy-exam]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = btn.getAttribute('data-copy-exam');
+          const txt = $('#exam_' + idx).textContent;
+          copyText(txt);
+        });
+      });
+
+      highlightUnder($('#content'));
+    }
+
+    function renderHomeQuickActions() {
+      const stats = {
+        topics: allLearnTopicIds().length,
+        practice: DATA.practiceSets.length,
+        quiz: DATA.quizQuestions.length,
+        exam: DATA.examQuestions.length,
+        recent: (state.recent || []).length
+      };
+
+      const recent = (state.recent || []).map(id => {
+        const c = DATA.topicContent[id];
+        const label = c ? tval(c.title) : id;
+        return `
+          <button data-recent="${id}" class="text-left rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-3 hover:bg-slate-900/35">
+            <div class="text-sm font-semibold truncate">${escapeHtml(label)}</div>
+            <div class="mt-1 text-xs text-slate-400 truncate">${escapeHtml(getParentBreadcrumb(id))}</div>
+          </button>
+        `;
+      }).join('');
+
+      const st = completionStats();
+
+      return `
+        <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <div class="text-xs text-slate-400">Learn Topics</div>
+            <div class="mt-1 text-2xl font-bold">${stats.topics}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <div class="text-xs text-slate-400">Practice Sets</div>
+            <div class="mt-1 text-2xl font-bold">${stats.practice}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <div class="text-xs text-slate-400">Quiz Questions</div>
+            <div class="mt-1 text-2xl font-bold">${stats.quiz}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <div class="text-xs text-slate-400">Exam Qs</div>
+            <div class="mt-1 text-2xl font-bold">${stats.exam}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-800/70 bg-slate-950/30 ring-soft p-4">
+            <div class="text-xs text-slate-400">Progress</div>
+            <div class="mt-1 text-2xl font-bold">${st.pct}%</div>
+            <div class="mt-2 w-full h-2 rounded-full bg-slate-900/60 ring-soft overflow-hidden">
+              <div class="h-full bg-emerald-500/60" style="width:${st.pct}%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <button id="qaPractice" class="px-4 py-2 rounded-xl bg-orange-500/10 text-orange-200 ring-soft border border-orange-400/20 hover:bg-orange-500/15">
+            <i class="fa-solid fa-dumbbell mr-2"></i>${escapeHtml(ui('labels.practiceSets'))}
+          </button>
+          <button id="qaQuiz" class="px-4 py-2 rounded-xl bg-pink-500/10 text-pink-200 ring-soft border border-pink-400/20 hover:bg-pink-500/15">
+            <i class="fa-solid fa-circle-question mr-2"></i>${escapeHtml(tval({hi:'Start Quiz', en:'Start Quiz'}))}
+          </button>
+          <button id="qaEditor" class="px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-200 ring-soft border border-emerald-400/20 hover:bg-emerald-500/15">
+            <i class="fa-solid fa-bolt mr-2"></i>${escapeHtml(tval({hi:'Open Editor', en:'Open Editor'}))}
+          </button>
+          <button id="qaExam" class="px-4 py-2 rounded-xl bg-violet-500/10 text-violet-200 ring-soft border border-violet-400/20 hover:bg-violet-500/15">
+            <i class="fa-solid fa-graduation-cap mr-2"></i>${escapeHtml(ui('labels.examQuestions'))}
+          </button>
+        </div>
+
+        ${(state.recent?.length) ? `
+          <div class="mt-6">
+            ${contentCard('Recently Viewed', `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">${recent}</div>`) }
+          </div>
+        ` : ''}
+      `;
+    }
+
+    // ---------- Main route renderer ----------
+    function renderRoute() {
+      const r = parseHash();
+
+      // Share link
+      $('#btnShare').onclick = () => copyText(location.href);
+      $('#btnGoEditor').onclick = () => routeToPage('editor');
+
+      // Header buttons for non-topic pages
+      const isEditor = r.page === 'editor';
+      $('#btnGoEditor').classList.toggle('hidden', isEditor);
+
+      if (r.page === 'practice') {
+        renderPracticePage();
+        return;
+      }
+
+      if (r.page === 'quiz') {
+        renderQuizPage();
+        return;
+      }
+
+      if (r.page === 'editor') {
+        renderEditorPage({ allowTemplates: true });
+        return;
+      }
+
+      if (r.page === 'exam') {
+        renderExamPage();
+        return;
+      }
+
+      // topic
+      renderTopicContent(r.id || 'intro');
+
+      // Extra actions on intro
+      if ((r.id || 'intro') === 'intro') {
+        $('#btnMarkDone').classList.add('hidden');
+        $('#btnNotes').classList.add('hidden');
+        const extra = renderHomeQuickActions();
+        $('#content').insertAdjacentHTML('beforeend', extra);
+        $('#qaPractice').addEventListener('click', () => routeToPage('practice'));
+        $('#qaQuiz').addEventListener('click', () => routeToPage('quiz'));
+        $('#qaEditor').addEventListener('click', () => routeToPage('editor'));
+        $('#qaExam').addEventListener('click', () => routeToPage('exam'));
+        $$('[data-recent]').forEach(b => b.addEventListener('click', () => routeToTopic(b.getAttribute('data-recent'))));
+      }
+
+      renderProgress();
+    }
+
+    // ---------- Mobile drawer ----------
+    function openDrawer() {
+      $('#mobileDrawer').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      $('#mobileDrawer').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // ---------- Boot ----------
+    function initBrand() {
+      $('#brandIcon').className = `${DATA.app.logo_icon} text-2xl text-orange-400`;
+      $('#appName').textContent = DATA.app.name;
+      $('#appVersion').textContent = `v${DATA.app.version}`;
+      $('#appByline').textContent = `${DATA.app.author} • @${DATA.app.username}`;
+      $('#githubLink').href = DATA.app.github;
+      $('#footerUser').textContent = `@${DATA.app.username}`;
+    }
+
+    function initLanguageSelector() {
+      const sel = $('#languageSelect');
+      sel.innerHTML = DATA.languages.map(l => {
+        const label = `${l.flag} ${l.name}`;
+        return `<option value="${l.code}">${escapeHtml(label)}</option>`;
+      }).join('');
+      sel.value = state.lang;
+      sel.addEventListener('change', () => {
+        state.lang = sel.value;
+        saveState();
+        applyI18n();
+        renderAllNav();
+        renderRoute();
+      });
+    }
+
+    function applyI18n() {
+      $('#lblTopics').textContent = ui('labels.topics');
+      $('#lblTopicsMobile').textContent = ui('labels.topics');
+      $('#topicSearch').placeholder = ui('labels.search');
+      $('#topicSearchMobile').placeholder = ui('labels.search');
+    }
+
+    function initSearch() {
+      const onSearch = debounce((val) => {
+        renderTopicNav($('#topicNav'), val);
+      }, 120);
+      const onSearchMobile = debounce((val) => {
+        renderTopicNav($('#topicNavMobile'), val);
+      }, 120);
+
+      $('#topicSearch').addEventListener('input', (e) => onSearch(e.target.value));
+      $('#topicSearchMobile').addEventListener('input', (e) => onSearchMobile(e.target.value));
+    }
+
+    function initGlobalShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'k')) {
+          e.preventDefault();
+          if (window.innerWidth >= 768) $('#topicSearch').focus();
+          else {
+            openDrawer();
+            setTimeout(() => $('#topicSearchMobile').focus(), 50);
+          }
+        }
+        if (e.key === 'Escape') {
+          closeDrawer();
+          closeNotes();
+        }
+      });
+    }
+
+    function exportProgress() {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        app: DATA.app.name,
+        version: DATA.app.version,
+        state
+      };
+      copyText(JSON.stringify(payload, null, 2));
+    }
+
+    function importProgress() {
+      const raw = prompt('Paste exported JSON here:');
+      if (!raw) return;
+      try {
+        const obj = JSON.parse(raw);
+        if (!obj?.state) throw new Error('Invalid');
+        state = Object.assign(structuredClone(defaultState), obj.state);
+        saveState();
+        initLanguageSelector();
+        applyI18n();
+        renderAllNav();
+        renderRoute();
+        showToast('Imported');
+      } catch {
+        alert('Invalid JSON');
+      }
+    }
+
+    function initNavButtons() {
+      $('#btnMobileNav').addEventListener('click', openDrawer);
+      $('#btnCloseDrawer').addEventListener('click', closeDrawer);
+      $('#mobileBackdrop').addEventListener('click', closeDrawer);
+
+      const reset = () => {
+        if (!confirm('Reset saved progress (language, quiz score, editor code, notes)?')) return;
+        localStorage.removeItem(STORAGE_KEY);
+        state = loadState();
+        initLanguageSelector();
+        applyI18n();
+        renderAllNav();
+        routeToTopic('intro');
+      };
+
+      $('#btnResetProgress').addEventListener('click', reset);
+      $('#btnResetProgressMobile').addEventListener('click', reset);
+
+      $('#btnExport').addEventListener('click', exportProgress);
+      $('#btnExportMobile').addEventListener('click', exportProgress);
+
+      $('#btnImport').addEventListener('click', importProgress);
+      $('#btnImportMobile').addEventListener('click', importProgress);
+
+      // Bottom nav
+      $('#mbTopics').addEventListener('click', openDrawer);
+      $('#mbHome').addEventListener('click', () => routeToTopic('intro'));
+      $('#mbPractice').addEventListener('click', () => routeToPage('practice'));
+      $('#mbQuiz').addEventListener('click', () => routeToPage('quiz'));
+      $('#mbEditor').addEventListener('click', () => routeToPage('editor'));
+
+      // Notes modal
+      $('#btnCloseNotes').addEventListener('click', closeNotes);
+      $('#notesBackdrop').addEventListener('click', closeNotes);
+      $('#btnSaveNotes').addEventListener('click', () => {
+        if (!notesForTopicId) return;
+        state.notes[notesForTopicId] = $('#notesTextarea').value;
+        saveState();
+        showToast('Notes saved');
+        closeNotes();
+        renderRoute();
+      });
+      $('#btnClearNotes').addEventListener('click', () => {
+        if (!notesForTopicId) return;
+        if (!confirm('Clear notes?')) return;
+        state.notes[notesForTopicId] = '';
+        saveState();
+        $('#notesTextarea').value = '';
+        showToast('Cleared');
+      });
+      $('#btnCopyNotes').addEventListener('click', () => copyText($('#notesTextarea').value));
+    }
+
+    function initHashRouting() {
+      window.addEventListener('hashchange', () => {
+        renderAllNav();
+        renderRoute();
+      });
+
+      if (!location.hash) {
+        const lr = state.lastRoute || { page: 'topic', id: 'intro' };
+        if (lr.page === 'topic') setHash({ topic: lr.id || 'intro' });
+        else setHash({ page: lr.page, id: lr.id || '' });
+      }
+    }
+
+    // Initialize
+    initBrand();
+    initLanguageSelector();
+    applyI18n();
+    initSearch();
+    initNavButtons();
+    initHashRouting();
+    initGlobalShortcuts();
+
+    // First render
+    renderAllNav();
+    renderRoute();
+  </script>
+</body>
+</html>
